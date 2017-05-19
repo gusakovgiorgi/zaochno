@@ -27,22 +27,32 @@ public class RootTrainingsFragment extends Fragment {
     private ViewPager mViewPager;
     private TabLayout mTabLayout;
 
+    private static final String ARG_PARAM1 = "menu_item_param";
+    private int menuId;
+
     private OnFragmentInteractionCallback mListener;
 
     public RootTrainingsFragment() {
+        menuId=R.id.navTreningId;
         // Required empty public constructor
     }
 
 
     // TODO: Rename and change types and number of parameters
-    public static RootTrainingsFragment newInstance() {
+    public static RootTrainingsFragment newInstance(int menuId) {
        RootTrainingsFragment fragment = new RootTrainingsFragment();
+        Bundle args = new Bundle();
+        args.putInt(ARG_PARAM1, menuId);
+        fragment.setArguments(args);
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            menuId = getArguments().getInt(ARG_PARAM1);
+        }
     }
 
     @Override
@@ -60,6 +70,11 @@ public class RootTrainingsFragment extends Fragment {
 
         mTabLayout = (TabLayout) view.findViewById(R.id.treningTabLayoutId);
         mTabLayout.setupWithViewPager(mViewPager);
+        switch (menuId){
+            case R.id.navFavoriteId:
+                mViewPager.setCurrentItem(1);
+        }
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event

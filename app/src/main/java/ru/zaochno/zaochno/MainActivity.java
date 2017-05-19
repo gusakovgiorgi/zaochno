@@ -59,12 +59,18 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
+        FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
         switch (item.getItemId()){
             case R.id.navTreningId:
-                FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.mainFrameId, RootTrainingsFragment.newInstance());
-                transaction.commit();
+            case R.id.navFavoriteId:
+                transaction.replace(R.id.mainFrameId, RootTrainingsFragment.newInstance(item.getItemId()));
+                break;
+            case R.id.navTestID:
+                transaction.replace(R.id.mainFrameId,ProgressTrainingsFragment.newInstance("fakeData"));
+                break;
+
         }
+        transaction.commit();
 
 
 
