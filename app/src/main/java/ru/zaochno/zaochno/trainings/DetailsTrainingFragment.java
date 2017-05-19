@@ -82,7 +82,7 @@ public class DetailsTrainingFragment extends Fragment {
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(int id) {
         if (mListener != null) {
-            mListener.onDetailsTrainingsFragmentButtonClicked(id);
+            mListener.onDetailsTrainingsFragmentButtonDemoClicked(id);
         }
     }
 
@@ -93,7 +93,7 @@ public class DetailsTrainingFragment extends Fragment {
             mListener = (OnDetailsTrainingsFragmentCallback) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnTrainingDetailsItemClickedListener");
+                    + " must implement OnTrainingDetailsCallBack");
         }
     }
 
@@ -102,6 +102,8 @@ public class DetailsTrainingFragment extends Fragment {
         super.onDetach();
         mListener = null;
     }
+
+
 
     /**
      * This interface must be implemented by activities that contain this
@@ -115,6 +117,6 @@ public class DetailsTrainingFragment extends Fragment {
      */
     public interface OnDetailsTrainingsFragmentCallback {
         // TODO: Update argument type and name
-        void onDetailsTrainingsFragmentButtonClicked(int id);
+        void onDetailsTrainingsFragmentButtonDemoClicked(int id);
     }
 }

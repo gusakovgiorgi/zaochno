@@ -3,17 +3,24 @@ package ru.zaochno.zaochno.trainings;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import ru.zaochno.zaochno.R;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link OnProgressTrainingsListener} interface
+ * {@link OnProgressTrainingsFragmentCallback} interface
  * to handle interaction events.
  * Use the {@link ProgressTrainingsFragment#newInstance} factory method to
  * create an instance of this fragment.
@@ -26,7 +33,7 @@ public class ProgressTrainingsFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
 
-    private OnProgressTrainingsListener mListener;
+    private OnProgressTrainingsFragmentCallback mListener;
 
     public ProgressTrainingsFragment() {
         // Required empty public constructor
@@ -63,6 +70,17 @@ public class ProgressTrainingsFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_trainings_progress, container, false);
     }
 
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        ListView lv=(ListView)view.findViewById(R.id.progressTrainingsFragmentListViewId);
+        List<String> data=new ArrayList<>();
+        data.add("fake1");
+        data.add("fake2");
+        data.add("fake3");
+        lv.setAdapter(new ProgressListViewAdapter(getContext(),data));
+    }
+
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
@@ -73,11 +91,11 @@ public class ProgressTrainingsFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-//        if (context instanceof OnProgressTrainingsListener) {
-//            mListener = (OnProgressTrainingsListener) context;
+//        if (context instanceof OnProgressTrainingsFragmentCallback) {
+//            mListener = (OnProgressTrainingsFragmentCallback) context;
 //        } else {
 //            throw new RuntimeException(context.toString()
-//                    + " must implement OnTrainingDetailsItemClickedListener");
+//                    + " must implement OnTrainingDetailsCallBack");
 //        }
     }
 
@@ -87,6 +105,39 @@ public class ProgressTrainingsFragment extends Fragment {
         mListener = null;
     }
 
+    class ProgressListViewAdapter extends BaseAdapter {
+
+        private List<String> data;
+        private LayoutInflater mInflater;
+
+        public ProgressListViewAdapter(Context ctx,List<String> data){
+            this.data=data;
+            mInflater = (LayoutInflater) ctx
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        }
+        @Override
+        public int getCount() {
+            return data.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return data.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            View v=mInflater.inflate(R.layout.progress_list_view_item,parent,false);
+            TextView text= (TextView) v.findViewById(R.id.progressListViewItemHeaderId);
+            text.setText(data.get(position));
+            return v;
+        }
+    }
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -97,8 +148,10 @@ public class ProgressTrainingsFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnProgressTrainingsListener {
+    public interface OnProgressTrainingsFragmentCallback {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
+
 }

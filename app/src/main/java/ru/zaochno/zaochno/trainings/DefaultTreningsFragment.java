@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -22,7 +23,7 @@ public class DefaultTreningsFragment extends Fragment {
 
     private ListView mListview;
 
-    private OnTrainingDetailsItemClickedListener mListener;
+    private OnTrainingDetailsCallBack mListener;
 
     public DefaultTreningsFragment() {
         // Required empty public constructor
@@ -55,26 +56,21 @@ public class DefaultTreningsFragment extends Fragment {
         mListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                onTraining(position);
+                onTrainingItemClicked(position);
             }
         });
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onTraining(int position) {
-        if (mListener != null) {
-            mListener.onTrainingClicked((String) mListview.getAdapter().getItem(position));
-        }
-    }
+
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnTrainingDetailsItemClickedListener) {
-            mListener = (OnTrainingDetailsItemClickedListener) context;
+        if (context instanceof OnTrainingDetailsCallBack) {
+            mListener = (OnTrainingDetailsCallBack) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnTrainingDetailsItemClickedListener");
+                    + " must implement OnTrainingDetailsCallBack");
         }
     }
 
@@ -111,9 +107,17 @@ public class DefaultTreningsFragment extends Fragment {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            View v=mInflater.inflate(R.layout.list_view_item,parent,false);
+            View v=mInflater.inflate(R.layout.details_list_view_item,parent,false);
             TextView text= (TextView) v.findViewById(R.id.list_item_shosrt_description_id);
             text.setText(data.get(position));
+            Button btn=(Button)v.findViewById(R.id.defaultTrainingsFragmentDemoButtonId);
+            btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int fakeId=0;
+                    demoButtonClicked(fakeId);
+                }
+            });
             return v;
         }
     }
@@ -128,9 +132,23 @@ public class DefaultTreningsFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnTrainingDetailsItemClickedListener {
+    public interface OnTrainingDetailsCallBack {
         // TODO: change this to model
         void onTrainingClicked(String data);
+        void OnTraininDetailsCallbackDemoButtonClicked(int trainingId);
+    }
+
+    // TODO: Rename method, update argument and hook method into UI event
+    private void onTrainingItemClicked(int position) {
+        if (mListener != null) {
+            mListener.onTrainingClicked((String) mListview.getAdapter().getItem(position));
+        }
+    }
+
+    private void demoButtonClicked(int trainingId){
+        if(mListener!=null){
+            mListener.OnTraininDetailsCallbackDemoButtonClicked(trainingId);
+        }
     }
 
 

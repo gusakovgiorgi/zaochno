@@ -1,4 +1,4 @@
-package ru.zaochno.zaochno.trenings;
+package ru.zaochno.zaochno.trainings;
 
 import android.content.Context;
 import android.net.Uri;
@@ -19,21 +19,24 @@ import java.util.List;
 import ru.zaochno.zaochno.R;
 
 
-public class TreningsRootFragment extends Fragment {
+/**
+ * Список тренингов
+ */
+public class RootTrainingsFragment extends Fragment {
 
     private ViewPager mViewPager;
     private TabLayout mTabLayout;
 
-    private OnFragmentInteractionListener mListener;
+    private OnFragmentInteractionCallback mListener;
 
-    public TreningsRootFragment() {
+    public RootTrainingsFragment() {
         // Required empty public constructor
     }
 
 
     // TODO: Rename and change types and number of parameters
-    public static TreningsRootFragment newInstance() {
-        TreningsRootFragment fragment = new TreningsRootFragment();
+    public static RootTrainingsFragment newInstance() {
+       RootTrainingsFragment fragment = new RootTrainingsFragment();
         return fragment;
     }
 
@@ -69,11 +72,11 @@ public class TreningsRootFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-//        if (context instanceof OnFragmentInteractionListener) {
-//            mListener = (OnFragmentInteractionListener) context;
+//        if (context instanceof OnFragmentInteractionCallback) {
+//            mListener = (OnFragmentInteractionCallback) context;
 //        } else {
 //            throw new RuntimeException(context.toString()
-//                    + " must implement OnFragmentInteractionListener");
+//                    + " must implement OnFragmentInteractionCallback");
 //        }
     }
 
@@ -134,7 +137,7 @@ public class TreningsRootFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFragmentInteractionListener {
+    public interface OnFragmentInteractionCallback {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }

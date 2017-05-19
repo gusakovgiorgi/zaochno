@@ -13,10 +13,10 @@ import android.view.MenuItem;
 import ru.zaochno.zaochno.trainings.DefaultTreningsFragment;
 import ru.zaochno.zaochno.trainings.DetailsTrainingFragment;
 import ru.zaochno.zaochno.trainings.ProgressTrainingsFragment;
-import ru.zaochno.zaochno.trainings.RootTreningsFragment;
+import ru.zaochno.zaochno.trainings.RootTrainingsFragment;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, DefaultTreningsFragment.OnTrainingDetailsItemClickedListener,DetailsTrainingFragment.OnDetailsTrainingsFragmentCallback {
+        implements NavigationView.OnNavigationItemSelectedListener, DefaultTreningsFragment.OnTrainingDetailsCallBack,DetailsTrainingFragment.OnDetailsTrainingsFragmentCallback {
 
 
     @Override
@@ -37,6 +37,10 @@ public class MainActivity extends AppCompatActivity
 
         // showing dot next to notifications label
         navigationView.getMenu().getItem(3).setActionView(R.layout.message_counter);
+
+
+        onNavigationItemSelected(navigationView.getMenu().getItem(0));
+        navigationView.getMenu().getItem(0).setChecked(true);
     }
 
     @Override
@@ -58,7 +62,7 @@ public class MainActivity extends AppCompatActivity
         switch (item.getItemId()){
             case R.id.navTreningId:
                 FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.mainFrameId, RootTreningsFragment.newInstance());
+                transaction.replace(R.id.mainFrameId, RootTrainingsFragment.newInstance());
                 transaction.commit();
         }
 
@@ -92,15 +96,21 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onDetailsTrainingsFragmentButtonClicked(int id) {
+    public void onDetailsTrainingsFragmentButtonDemoClicked(int id) {
 
-        switch (id){
-            case R.id.trainingDetailsOpenProgressButtonId:
+//        switch (id){
+//            case R.id.trainingDetailsOpenProgressButtonId:
+//            case R.id.defaultTrainingsFragmentDemoButtonId:
                 FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.mainFrameId, ProgressTrainingsFragment.newInstance("fakeId"));
                 transaction.addToBackStack(null);
                 transaction.commit();
 
-        }
+//        }
+    }
+
+    @Override
+    public void OnTraininDetailsCallbackDemoButtonClicked(int trainingId) {
+        onDetailsTrainingsFragmentButtonDemoClicked(trainingId);
     }
 }

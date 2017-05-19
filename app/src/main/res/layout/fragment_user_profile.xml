@@ -78,14 +78,14 @@
 
             </android.support.design.widget.TextInputLayout>
 
-            <android.support.v7.widget.AppCompatSpinner
+            <Spinner
                 android:id="@+id/userProfileFragmentRegionSpinnerId"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:prompt="promt"
+                android:spinnerMode="dropdown"
                 >
 
-            </android.support.v7.widget.AppCompatSpinner>
+            </Spinner>
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
