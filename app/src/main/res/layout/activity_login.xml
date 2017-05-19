@@ -18,7 +18,7 @@
 
     <!-- Login progress -->
     <ProgressBar
-        android:id="@+id/login_progress"
+        android:id="@+id/registrationExtendedFragmentLoginProgressId"
         style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -26,7 +26,7 @@
         android:visibility="gone" />
 
     <ScrollView
-        android:id="@+id/login_form"
+        android:id="@+id/extendedRegistrationFragmentLoginFormId"
         android:paddingTop="32dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:id="@+id/password"
+                    android:id="@+id/extendedRegistrationFragmentEmailId"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/prompt_password"
@@ -81,7 +81,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/forgotPasswordTvId"
+                android:id="@+id/extendedRegistrationFragmentGenDirectorName"
                 android:layout_marginTop="16dp"
                 android:layout_gravity="center"
                 android:layout_width="wrap_content"

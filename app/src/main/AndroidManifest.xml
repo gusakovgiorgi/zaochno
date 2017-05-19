@@ -24,11 +24,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--remove exported-->
+        <!-- remove exported -->
         <activity
             android:name=".LoginActivity"
-            android:label="@string/title_activity_login"
-            android:exported="true"></activity>
+            android:exported="true"
+            android:label="@string/title_activity_login" />
+        <activity
+            android:name=".RegistrationActivity"
+            android:exported="true"
+            android:label="@string/title_activity_registration"></activity>
     </application>
 
 </manifest>
