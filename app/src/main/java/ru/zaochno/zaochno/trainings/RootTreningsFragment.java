@@ -1,4 +1,4 @@
-package ru.zaochno.zaochno.trenings;
+package ru.zaochno.zaochno.trainings;
 
 import android.content.Context;
 import android.net.Uri;
@@ -19,21 +19,21 @@ import java.util.List;
 import ru.zaochno.zaochno.R;
 
 
-public class TreningsRootFragment extends Fragment {
+public class RootTreningsFragment extends Fragment {
 
     private ViewPager mViewPager;
     private TabLayout mTabLayout;
 
     private OnFragmentInteractionListener mListener;
 
-    public TreningsRootFragment() {
+    public RootTreningsFragment() {
         // Required empty public constructor
     }
 
 
     // TODO: Rename and change types and number of parameters
-    public static TreningsRootFragment newInstance() {
-        TreningsRootFragment fragment = new TreningsRootFragment();
+    public static RootTreningsFragment newInstance() {
+        RootTreningsFragment fragment = new RootTreningsFragment();
         return fragment;
     }
 
@@ -69,11 +69,11 @@ public class TreningsRootFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-//        if (context instanceof OnFragmentInteractionListener) {
-//            mListener = (OnFragmentInteractionListener) context;
+//        if (context instanceof OnTrainingDetailsItemClickedListener) {
+//            mListener = (OnTrainingDetailsItemClickedListener) context;
 //        } else {
 //            throw new RuntimeException(context.toString()
-//                    + " must implement OnFragmentInteractionListener");
+//                    + " must implement OnTrainingDetailsItemClickedListener");
 //        }
     }
 

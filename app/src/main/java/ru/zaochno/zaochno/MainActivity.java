@@ -10,10 +10,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-import ru.zaochno.zaochno.trenings.TreningsRootFragment;
+import ru.zaochno.zaochno.trainings.DefaultTreningsFragment;
+import ru.zaochno.zaochno.trainings.DetailsTrainingFragment;
+import ru.zaochno.zaochno.trainings.ProgressTrainingsFragment;
+import ru.zaochno.zaochno.trainings.RootTreningsFragment;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, DefaultTreningsFragment.OnTrainingDetailsItemClickedListener,DetailsTrainingFragment.OnDetailsTrainingsFragmentCallback {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +58,7 @@ public class MainActivity extends AppCompatActivity
         switch (item.getItemId()){
             case R.id.navTreningId:
                 FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.mainFrameId, TreningsRootFragment.newInstance());
+                transaction.replace(R.id.mainFrameId, RootTreningsFragment.newInstance());
                 transaction.commit();
         }
 
@@ -77,5 +81,26 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onTrainingClicked(String data) {
+        FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.mainFrameId, DetailsTrainingFragment.newInstance(data));
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
+    @Override
+    public void onDetailsTrainingsFragmentButtonClicked(int id) {
+
+        switch (id){
+            case R.id.trainingDetailsOpenProgressButtonId:
+                FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.mainFrameId, ProgressTrainingsFragment.newInstance("fakeId"));
+                transaction.addToBackStack(null);
+                transaction.commit();
+
+        }
     }
 }
