@@ -1,45 +1,52 @@
-package ru.zaochno.zaochno;
+package ru.zaochno.zaochno.trainings;
 
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ListView;
+
+import ru.zaochno.zaochno.R;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link MessagesFragment.OnFragmentInteractionListener} interface
+ * {@link ExamSignUpFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link MessagesFragment#newInstance} factory method to
+ * Use the {@link ExamSignUpFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MessagesFragment extends Fragment {
+public class ExamSignUpFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private String examId;
 
     private OnFragmentInteractionListener mListener;
 
-    public MessagesFragment() {
+    public ExamSignUpFragment() {
         // Required empty public constructor
     }
 
+    /**
+     * Use this factory method to create a new instance of
+     * this fragment using the provided parameters.
+     *
+     * @param param1 Parameter 1.
+     * @param param2 Parameter 2.
+     * @return A new instance of fragment ExamSignUpFragment.
+     */
     // TODO: Rename and change types and number of parameters
-    public static MessagesFragment newInstance() {
-        MessagesFragment fragment = new MessagesFragment();
-
+    public static ExamSignUpFragment newInstance(String examId) {
+        ExamSignUpFragment fragment = new ExamSignUpFragment();
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, examId);
+        fragment.setArguments(args);
         return fragment;
     }
 
@@ -47,8 +54,7 @@ public class MessagesFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-//            mParam1 = getArguments().getString(ARG_PARAM1);
-//            mParam2 = getArguments().getString(ARG_PARAM2);
+            examId = getArguments().getString(ARG_PARAM1);
         }
     }
 
@@ -56,14 +62,7 @@ public class MessagesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_messages, container, false);
-    }
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        ListView lv=(ListView)view.findViewById(R.id.messageFragmentListViewId);
-        lv.setAdapter(new MessageListViewAdapter(getContext()));
+        return inflater.inflate(R.layout.fragment_exam_sing_up, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -88,36 +87,6 @@ public class MessagesFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
-    }
-
-    class MessageListViewAdapter extends BaseAdapter{
-        private LayoutInflater mInflater;
-
-        MessageListViewAdapter(Context context){
-            mInflater = (LayoutInflater) context
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        }
-
-        //todo do this adapter
-        @Override
-        public int getCount() {
-            return 3;
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return null;
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            return mInflater.inflate(R.layout.message_list_view_item,parent,false);
-        }
     }
 
     /**

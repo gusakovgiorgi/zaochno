@@ -1,5 +1,6 @@
 package ru.zaochno.zaochno;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.design.widget.NavigationView;
@@ -10,9 +11,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import ru.zaochno.zaochno.message.MessagesFragment;
+import ru.zaochno.zaochno.settings.UserProfileFragment;
 import ru.zaochno.zaochno.testing.TestingRootFragment;
 import ru.zaochno.zaochno.trainings.DefaultTreningsFragment;
 import ru.zaochno.zaochno.trainings.DetailsTrainingFragment;
+import ru.zaochno.zaochno.trainings.ExamSignUpFragment;
 import ru.zaochno.zaochno.trainings.ProgressTrainingsFragment;
 import ru.zaochno.zaochno.trainings.RootTrainingsFragment;
 
@@ -23,6 +27,10 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if(!FakeData.isUserLogin()){
+            startActivity(new Intent(this,LoginActivity.class));
+            finish();
+        }
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -70,11 +78,13 @@ public class MainActivity extends AppCompatActivity
                 transaction.replace(R.id.mainFrameId, TestingRootFragment.newInstance());
                 break;
             case R.id.navSettingsId:
-                transaction.replace(R.id.mainFrameId,UserProfileFragment.newInstance());
+                transaction.replace(R.id.mainFrameId, UserProfileFragment.newInstance());
                 break;
             case R.id.navMessageId:
-                transaction.replace(R.id.mainFrameId,MessagesFragment.newInstance());
+                transaction.replace(R.id.mainFrameId, MessagesFragment.newInstance());
                 break;
+            case R.id.navExitId:
+                startLoginActivity();
 
         }
         transaction.commit();
@@ -98,6 +108,13 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void startLoginActivity() {
+        FakeData.setIsUserLogin(false);
+        Intent loginIntent=new Intent(this,LoginActivity.class);
+        startActivity(loginIntent);
+        finish();
     }
 
     @Override

@@ -1,8 +1,5 @@
-package ru.zaochno.zaochno;
+package ru.zaochno.zaochno.registration;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.annotation.TargetApi;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -10,22 +7,14 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
-import android.os.AsyncTask;
-
-import android.os.Build;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.view.KeyEvent;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.inputmethod.EditorInfo;
-import android.widget.AutoCompleteTextView;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import ru.zaochno.zaochno.R;
+import ru.zaochno.zaochno.registration.ExtendedRegistrationFragment;
+import ru.zaochno.zaochno.registration.SimpleRegistrationFragment;
 
 /**
  * A login screen that offers login via email/password.

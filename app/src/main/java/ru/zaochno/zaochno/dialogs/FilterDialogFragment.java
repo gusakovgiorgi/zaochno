@@ -2,6 +2,7 @@ package ru.zaochno.zaochno.dialogs;
 
 import android.app.Dialog;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,8 +22,17 @@ public class FilterDialogFragment extends DialogFragment {
     }
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setStyle(DialogFragment.STYLE_NORMAL,android.R.style.Theme_Holo_Light_Dialog);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        // Set title for this dialog
+        getDialog().setTitle("My Dialog Title");
+
         View v = inflater.inflate(R.layout.fragment_dialog_item, container, false);
 
         // get seekbar from view

@@ -3,6 +3,7 @@ package ru.zaochno.zaochno;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.graphics.Paint;
 import android.support.v7.app.AppCompatActivity;
 
@@ -32,7 +33,7 @@ public class LoginActivity extends AppCompatActivity {
      * TODO: remove after connecting to a real authentication system.
      */
     private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "bar@example.com:world"
+            "admin@gmail.com:admin", "bar@example.com:world"
     };
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
@@ -235,6 +236,8 @@ public class LoginActivity extends AppCompatActivity {
             showProgress(false);
 
             if (success) {
+                FakeData.setIsUserLogin(true);
+                startActivity(new Intent(LoginActivity.this,MainActivity.class));
                 finish();
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));

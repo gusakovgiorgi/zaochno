@@ -30,7 +30,7 @@
             android:exported="true"
             android:label="@string/title_activity_login" />
         <activity
-            android:name=".RegistrationActivity"
+            android:name=".registration.RegistrationActivity"
             android:exported="true"
             android:label="@string/title_activity_registration"></activity>
     </application>
