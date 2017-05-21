@@ -1,4 +1,4 @@
-package ru.zaochno.zaochno.trenings;
+package ru.zaochno.zaochno.trainings;
 
 import android.content.Context;
 import android.net.Uri;
@@ -19,27 +19,40 @@ import java.util.List;
 import ru.zaochno.zaochno.R;
 
 
-public class TreningsRootFragment extends Fragment {
+/**
+ * Список тренингов
+ */
+public class RootTrainingsFragment extends Fragment {
 
     private ViewPager mViewPager;
     private TabLayout mTabLayout;
 
-    private OnFragmentInteractionListener mListener;
+    private static final String ARG_PARAM1 = "menu_item_param";
+    private int menuId;
 
-    public TreningsRootFragment() {
+    private OnFragmentInteractionCallback mListener;
+
+    public RootTrainingsFragment() {
+        menuId=R.id.navTreningId;
         // Required empty public constructor
     }
 
 
     // TODO: Rename and change types and number of parameters
-    public static TreningsRootFragment newInstance() {
-        TreningsRootFragment fragment = new TreningsRootFragment();
+    public static RootTrainingsFragment newInstance(int menuId) {
+       RootTrainingsFragment fragment = new RootTrainingsFragment();
+        Bundle args = new Bundle();
+        args.putInt(ARG_PARAM1, menuId);
+        fragment.setArguments(args);
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            menuId = getArguments().getInt(ARG_PARAM1);
+        }
     }
 
     @Override
@@ -57,6 +70,11 @@ public class TreningsRootFragment extends Fragment {
 
         mTabLayout = (TabLayout) view.findViewById(R.id.treningTabLayoutId);
         mTabLayout.setupWithViewPager(mViewPager);
+        switch (menuId){
+            case R.id.navFavoriteId:
+                mViewPager.setCurrentItem(1);
+        }
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -69,11 +87,11 @@ public class TreningsRootFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-//        if (context instanceof OnUserProfileFragmentListener) {
-//            mListener = (OnUserProfileFragmentListener) context;
+//        if (context instanceof OnFragmentInteractionCallback) {
+//            mListener = (OnFragmentInteractionCallback) context;
 //        } else {
 //            throw new RuntimeException(context.toString()
-//                    + " must implement OnUserProfileFragmentListener");
+//                    + " must implement OnFragmentInteractionCallback");
 //        }
     }
 
@@ -134,7 +152,7 @@ public class TreningsRootFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFragmentInteractionListener {
+    public interface OnFragmentInteractionCallback {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }

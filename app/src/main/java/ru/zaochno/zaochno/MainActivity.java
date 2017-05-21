@@ -10,10 +10,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-import ru.zaochno.zaochno.trenings.TreningsRootFragment;
+import ru.zaochno.zaochno.trainings.DefaultTreningsFragment;
+import ru.zaochno.zaochno.trainings.DetailsTrainingFragment;
+import ru.zaochno.zaochno.trainings.ProgressTrainingsFragment;
+import ru.zaochno.zaochno.trainings.RootTrainingsFragment;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, DefaultTreningsFragment.OnTrainingDetailsCallBack,DetailsTrainingFragment.OnDetailsTrainingsFragmentCallback {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +37,10 @@ public class MainActivity extends AppCompatActivity
 
         // showing dot next to notifications label
         navigationView.getMenu().getItem(3).setActionView(R.layout.message_counter);
+
+
+        onNavigationItemSelected(navigationView.getMenu().getItem(0));
+        navigationView.getMenu().getItem(0).setChecked(true);
     }
 
     @Override
@@ -51,12 +59,18 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
+        FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
         switch (item.getItemId()){
             case R.id.navTreningId:
-                FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.mainFrameId, TreningsRootFragment.newInstance());
-                transaction.commit();
+            case R.id.navFavoriteId:
+                transaction.replace(R.id.mainFrameId, RootTrainingsFragment.newInstance(item.getItemId()));
+                break;
+            case R.id.navTestID:
+                transaction.replace(R.id.mainFrameId,ProgressTrainingsFragment.newInstance("fakeData"));
+                break;
+
         }
+        transaction.commit();
 
 
 
@@ -77,5 +91,32 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onTrainingClicked(String data) {
+        FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.mainFrameId, DetailsTrainingFragment.newInstance(data));
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
+    @Override
+    public void onDetailsTrainingsFragmentButtonDemoClicked(int id) {
+
+//        switch (id){
+//            case R.id.trainingDetailsOpenProgressButtonId:
+//            case R.id.defaultTrainingsFragmentDemoButtonId:
+                FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.mainFrameId, ProgressTrainingsFragment.newInstance("fakeId"));
+                transaction.addToBackStack(null);
+                transaction.commit();
+
+//        }
+    }
+
+    @Override
+    public void OnTraininDetailsCallbackDemoButtonClicked(int trainingId) {
+        onDetailsTrainingsFragmentButtonDemoClicked(trainingId);
     }
 }
