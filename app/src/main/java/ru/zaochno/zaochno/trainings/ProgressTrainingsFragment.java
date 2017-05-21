@@ -1,7 +1,6 @@
 package ru.zaochno.zaochno.trainings;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -79,24 +79,38 @@ public class ProgressTrainingsFragment extends Fragment {
         data.add("fake2");
         data.add("fake3");
         lv.setAdapter(new ProgressListViewAdapter(getContext(),data));
+
+        Button examSingUpButton=(Button)view.findViewById(R.id.progressTrainingsFragmentExamSingUpButtonId);
+        examSingUpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                singUpExam("fake id");
+            }
+        });
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
+    private void singUpExam(String s) {
         if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+            mListener.onSignUpExam(s);
         }
     }
+
+//    // TODO: Rename method, update argument and hook method into UI event
+//    public void onButtonPressed(Uri uri) {
+//        if (mListener != null) {
+//            mListener.onSignUpExam(uri);
+//        }
+//    }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-//        if (context instanceof OnProgressTrainingsFragmentCallback) {
-//            mListener = (OnProgressTrainingsFragmentCallback) context;
-//        } else {
-//            throw new RuntimeException(context.toString()
-//                    + " must implement OnTrainingDetailsCallBack");
-//        }
+        if (context instanceof OnProgressTrainingsFragmentCallback) {
+            mListener = (OnProgressTrainingsFragmentCallback) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnTrainingDetailsCallBack");
+        }
     }
 
     @Override
@@ -150,7 +164,7 @@ public class ProgressTrainingsFragment extends Fragment {
      */
     public interface OnProgressTrainingsFragmentCallback {
         // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        void onSignUpExam(String examId);
     }
 
 

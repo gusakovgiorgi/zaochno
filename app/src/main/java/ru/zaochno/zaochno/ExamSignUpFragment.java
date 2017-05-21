@@ -12,17 +12,22 @@ import android.view.ViewGroup;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link OnUserProfileFragmentListener} interface
+ * {@link ExamSignUpFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link UserProfileFragment#newInstance} factory method to
+ * Use the {@link ExamSignUpFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class UserProfileFragment extends Fragment {
+public class ExamSignUpFragment extends Fragment {
+    // TODO: Rename parameter arguments, choose names that match
+    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    private static final String ARG_PARAM1 = "param1";
 
+    // TODO: Rename and change types of parameters
+    private String examId;
 
-    private OnUserProfileFragmentListener mListener;
+    private OnFragmentInteractionListener mListener;
 
-    public UserProfileFragment() {
+    public ExamSignUpFragment() {
         // Required empty public constructor
     }
 
@@ -32,28 +37,30 @@ public class UserProfileFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment UserProfileFragment.
+     * @return A new instance of fragment ExamSignUpFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static UserProfileFragment newInstance() {
-        UserProfileFragment fragment = new UserProfileFragment();
+    public static ExamSignUpFragment newInstance(String examId) {
+        ExamSignUpFragment fragment = new ExamSignUpFragment();
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, examId);
+        fragment.setArguments(args);
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        if (getArguments() != null) {
-//            mParam1 = getArguments().getString(ARG_PARAM1);
-//            mParam2 = getArguments().getString(ARG_PARAM2);
-//        }
+        if (getArguments() != null) {
+            examId = getArguments().getString(ARG_PARAM1);
+        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_user_profile, container, false);
+        return inflater.inflate(R.layout.fragment_exam_sing_up, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -66,11 +73,11 @@ public class UserProfileFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-//        if (context instanceof OnUserProfileFragmentListener) {
-//            mListener = (OnUserProfileFragmentListener) context;
+//        if (context instanceof OnFragmentInteractionListener) {
+//            mListener = (OnFragmentInteractionListener) context;
 //        } else {
 //            throw new RuntimeException(context.toString()
-//                    + " must implement OnUserProfileFragmentListener");
+//                    + " must implement OnFragmentInteractionListener");
 //        }
     }
 
@@ -90,7 +97,7 @@ public class UserProfileFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnUserProfileFragmentListener {
+    public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }

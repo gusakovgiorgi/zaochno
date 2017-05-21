@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageButton
+        android:id="@+id/messageListViewCloseImageButtonId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/ic_close_black_24dp"
+        android:focusable="false"
+        android:layout_alignParentEnd="true" />
+    <TextView
+        android:id="@+id/messageListViewMessageTitleId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Заголовок Сообщения"/>
+    <TextView
+        android:id="@+id/messageListViewMessageStatusTextViewId"
+        android:layout_marginLeft="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/messageListViewMessageTitleId"
+        android:text="(Не прочтено)"/>
+    <TextView
+        android:id="@+id/messageListViewDateTextViewId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/messageListViewMessageTitleId"
+        android:text="12 сентярбря 2016 12:00"/>
+
+    <TextView
+        android:id="@+id/messageListViewMessageTextViewId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/messageListViewDateTextViewId"
+
+        android:text="Но и перешагнул в электронный дизайн. Его популяризации в новое время послужили публикация листов Letraset с образцами Lorem Ipsum в 60-х годах и, в более недавнее время, программы электронной вёрстки типа Aldus PageMaker, в шаблонах которых используется Lorem Ipsum."/>
+
+
+
+    
+
+</RelativeLayout>

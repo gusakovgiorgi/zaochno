@@ -10,13 +10,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import ru.zaochno.zaochno.testing.TestingRootFragment;
 import ru.zaochno.zaochno.trainings.DefaultTreningsFragment;
 import ru.zaochno.zaochno.trainings.DetailsTrainingFragment;
 import ru.zaochno.zaochno.trainings.ProgressTrainingsFragment;
 import ru.zaochno.zaochno.trainings.RootTrainingsFragment;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, DefaultTreningsFragment.OnTrainingDetailsCallBack,DetailsTrainingFragment.OnDetailsTrainingsFragmentCallback {
+        implements NavigationView.OnNavigationItemSelectedListener, DefaultTreningsFragment.OnTrainingDetailsCallBack,DetailsTrainingFragment.OnDetailsTrainingsFragmentCallback,ProgressTrainingsFragment.OnProgressTrainingsFragmentCallback {
 
 
     @Override
@@ -66,7 +67,13 @@ public class MainActivity extends AppCompatActivity
                 transaction.replace(R.id.mainFrameId, RootTrainingsFragment.newInstance(item.getItemId()));
                 break;
             case R.id.navTestID:
-                transaction.replace(R.id.mainFrameId,ProgressTrainingsFragment.newInstance("fakeData"));
+                transaction.replace(R.id.mainFrameId, TestingRootFragment.newInstance());
+                break;
+            case R.id.navSettingsId:
+                transaction.replace(R.id.mainFrameId,UserProfileFragment.newInstance());
+                break;
+            case R.id.navMessageId:
+                transaction.replace(R.id.mainFrameId,MessagesFragment.newInstance());
                 break;
 
         }
@@ -118,5 +125,13 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void OnTraininDetailsCallbackDemoButtonClicked(int trainingId) {
         onDetailsTrainingsFragmentButtonDemoClicked(trainingId);
+    }
+
+    @Override
+    public void onSignUpExam(String examId) {
+        FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.mainFrameId, ExamSignUpFragment.newInstance("fakeId"));
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 }

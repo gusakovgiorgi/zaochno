@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context="ru.zaochno.zaochno.UserProfileFragment">
 
@@ -83,10 +84,11 @@
                 android:id="@+id/userProfileFragmentRegionSpinnerId"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:spinnerMode="dropdown"
-                >
+                android:entries="@array/fakeList"
+                style="@style/Widget.AppCompat.Spinner.Underlined">
 
             </Spinner>
+
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -102,6 +104,7 @@
                     android:singleLine="true" />
 
             </android.support.design.widget.TextInputLayout>
+
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -117,6 +120,7 @@
                     android:singleLine="true" />
 
             </android.support.design.widget.TextInputLayout>
+
             <Button
                 android:id="@+id/userProfileFragmentSaveButtonId"
                 style="?android:textAppearanceSmall"

@@ -1,0 +1,57 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="ru.zaochno.zaochno.ExamSignUpFragment">
+
+    <LinearLayout
+        android:id="@+id/examSignUpFragmentDatePickerFormId"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:drawableLeft="@drawable/ic_access_time_black_24dp"
+            android:textSize="24dp"
+            android:text="Выберите Дату"/>
+        <DatePicker
+            android:id="@+id/datePicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:datePickerMode="spinner"
+            android:calendarViewShown="false" />
+    </LinearLayout>
+
+
+    <Spinner
+        android:layout_below="@id/examSignUpFragmentDatePickerFormId"
+        android:id="@+id/examSignUpFragmentRegionSpinnerId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/fakeList"
+        style="@style/Widget.AppCompat.Spinner.Underlined">
+
+    </Spinner>
+
+    <Button
+        android:id="@+id/examSingUpFragmentSingUpButtonId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Записаться"
+        android:layout_below="@id/examSignUpFragmentRegionSpinnerId"/>
+
+    <Button
+        android:id="@+id/examSignUpFragmentexamSheduleButtonId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="Просмотр расписания"/>
+
+
+</RelativeLayout>
