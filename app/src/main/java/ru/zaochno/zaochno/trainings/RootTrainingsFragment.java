@@ -21,6 +21,7 @@ import java.util.List;
 
 import ru.zaochno.zaochno.R;
 import ru.zaochno.zaochno.dialogs.FilterDialogFragment;
+import ru.zaochno.zaochno.model.TrainingsCategory;
 
 
 /**
@@ -130,9 +131,9 @@ public class RootTrainingsFragment extends Fragment {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
-        adapter.addFragment(DefaultTreningsFragment.newInstance(), "Тренинги");
-        adapter.addFragment(DefaultTreningsFragment.newInstance(), "Избранное");
-        adapter.addFragment(DefaultTreningsFragment.newInstance(), "Купленное");
+        adapter.addFragment(DefaultTreningsFragment.newInstance(TrainingsCategory.ALL), "Тренинги");
+        adapter.addFragment(DefaultTreningsFragment.newInstance(TrainingsCategory.FAVORITES), "Избранное");
+        adapter.addFragment(DefaultTreningsFragment.newInstance(TrainingsCategory.BOUGHT), "Купленное");
         viewPager.setAdapter(adapter);
     }
 

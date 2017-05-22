@@ -87,12 +87,25 @@ public class ProgressTrainingsFragment extends Fragment {
                 singUpExam("fake id");
             }
         });
+        Button startTestingBtn=(Button)view.findViewById(R.id.progressTrainingsFragmentstartTestingButtonId);
+        startTestingBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startTesting("refactor");
+            }
+        });
     }
 
     private void singUpExam(String s) {
         if (mListener != null) {
             mListener.onSignUpExam(s);
         }
+    }
+    //todo refactor this class for siutable model
+    private void startTesting(String s) {
+//        if (mListener != null) {
+//            mListener.onSignUpExam(s);
+//        }
     }
 
 //    // TODO: Rename method, update argument and hook method into UI event
@@ -109,7 +122,7 @@ public class ProgressTrainingsFragment extends Fragment {
             mListener = (OnProgressTrainingsFragmentCallback) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnTrainingDetailsCallBack");
+                    + " must implement OnDefaultTrainingsFragmentCallBack");
         }
     }
 

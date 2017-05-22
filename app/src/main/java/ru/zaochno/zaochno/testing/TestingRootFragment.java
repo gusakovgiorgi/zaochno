@@ -16,8 +16,9 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
+import ru.zaochno.zaochno.FakeData;
 import ru.zaochno.zaochno.R;
-import ru.zaochno.zaochno.trainings.DefaultTreningsFragment;
+import ru.zaochno.zaochno.model.testing.Test;
 
 
 /**
@@ -74,8 +75,13 @@ public class TestingRootFragment extends Fragment {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
-        adapter.addFragment(TestingFragment.newInstance("0"), "Текущее тестирование");
-        adapter.addFragment(TestingFragment.newInstance("1"), "Пройденные тесты");
+        List<Test> testList=FakeData.getTrainings().get(0).getTests();
+        Test[] tests=new Test[testList.size()];
+        for(int i=0;i<testList.size();i++){
+            tests[i]=testList.get(i);
+        }
+        adapter.addFragment(TestingDetailsFragment.newInstance(tests), "Текущее тестирование");
+        adapter.addFragment(TestingDetailsFragment.newInstance(new Test[0]), "Пройденные тесты");
         viewPager.setAdapter(adapter);
     }
 
@@ -89,11 +95,11 @@ public class TestingRootFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-//        if (context instanceof OnFragmentInteractionListener) {
-//            mListener = (OnFragmentInteractionListener) context;
+//        if (context instanceof OnTestingDetailsFragmentCallBack) {
+//            mListener = (OnTestingDetailsFragmentCallBack) context;
 //        } else {
 //            throw new RuntimeException(context.toString()
-//                    + " must implement OnFragmentInteractionListener");
+//                    + " must implement OnTestingDetailsFragmentCallBack");
 //        }
     }
 

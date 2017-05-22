@@ -1,13 +1,62 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
+    android:orientation="vertical"
+    android:gravity="center"
     tools:context="ru.zaochno.zaochno.testing.TestingFragment">
 
-   <ListView
-       android:id="@+id/testingFragmentListViewId"
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"></ListView>
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/simpleQuestionTextId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Вопрос:"/>
+    <TextView
+        android:id="@+id/testingQuestionId"
+        android:layout_below="@id/simpleQuestionTextId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="вопросс?" />
+    <TextView
+        android:id="@+id/simpleAnswersTextId"
+        android:layout_below="@id/testingQuestionId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Варианты ответов:"/>
 
-</LinearLayout>
+    <LinearLayout
+        android:id="@+id/simpleButtonsLayoutId"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <!--<Button-->
+            <!--android:id="@+id/testingPreviousButtonId"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="предыдущий"-->
+            <!--android:layout_weight="1"/>-->
+        <!--<Button-->
+            <!--android:id="@+id/testingNextButtonId"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="следующий"-->
+            <!--android:layout_weight="1"/>-->
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_below="@id/simpleAnswersTextId"
+        android:layout_above="@id/simpleButtonsLayoutId"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <ru.zaochno.zaochno.testing.PredicateLayout
+        android:id="@+id/testingPredicateLayouttId"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </ru.zaochno.zaochno.testing.PredicateLayout>
+    </ScrollView>
+
+
+
+</RelativeLayout>

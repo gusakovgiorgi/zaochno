@@ -1,4 +1,4 @@
-package ru.zaochno.zaochno.trainings;
+package ru.zaochno.zaochno.testing;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -7,41 +7,44 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import ru.zaochno.zaochno.R;
-import ru.zaochno.zaochno.model.Training;
+import ru.zaochno.zaochno.model.testing.Test;
+import ru.zaochno.zaochno.testing.adapter.TestingsViewAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link OnDetailsTrainingsFragmentCallback} interface
+ * {@link OnTestingDetailsFragmentCallBack} interface
  * to handle interaction events.
- * Use the {@link DetailsTrainingFragment#newInstance} factory method to
+ * Use the {@link TestingDetailsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class DetailsTrainingFragment extends Fragment {
-
+public class TestingDetailsFragment extends Fragment {
+    // TODO: Rename parameter arguments, choose names that match
+    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
 
+    // TODO: Rename and change types of parameters
+    private Test[] tests;
+    private TestingsViewAdapter mAdapter;
 
+    private OnTestingDetailsFragmentCallBack mListener;
 
-    private Training data;
-
-    private OnDetailsTrainingsFragmentCallback mListener;
-
-    public DetailsTrainingFragment() {
+    public TestingDetailsFragment() {
         // Required empty public constructor
     }
 
-
     // TODO: Rename and change types and number of parameters
-    public static DetailsTrainingFragment newInstance(Training training) {
-        DetailsTrainingFragment fragment = new DetailsTrainingFragment();
-            Bundle args = new Bundle();
-            args.putParcelable(ARG_PARAM1, training);
-            fragment.setArguments(args);
+    public static TestingDetailsFragment newInstance(Test[] tests) {
+        TestingDetailsFragment fragment = new TestingDetailsFragment();
+        Bundle args = new Bundle();
+        args.putParcelableArray(ARG_PARAM1, tests);
+        fragment.setArguments(args);
         return fragment;
     }
 
@@ -49,7 +52,8 @@ public class DetailsTrainingFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            data = getArguments().getParcelable(ARG_PARAM1);
+            //todo use tis id for tabs
+            tests = (Test[]) getArguments().getParcelableArray(ARG_PARAM1);
         }
     }
 
@@ -57,38 +61,26 @@ public class DetailsTrainingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_training_details, container, false);
+        return inflater.inflate(R.layout.fragment_details_testing, container, false);
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        TextView descriptionTv= (TextView) view.findViewById(R.id.trainingDetailsDescriptionId);
-        descriptionTv.setText(data.getDescription());
-        Button openTrainingProgressBtn=(Button)view.findViewById(R.id.trainingDetailsOpenProgressButtonId);
-        openTrainingProgressBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onButtonPressed(v.getId());
-            }
-        });
+        ListView lv=(ListView)view.findViewById(R.id.testingFragmentListViewId);
+        mAdapter=new TestingsViewAdapter(this,new ArrayList<Test>(Arrays.asList(tests)));
+        lv.setAdapter(mAdapter);
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(int id) {
-        if (mListener != null) {
-            mListener.onDetailsTrainingsFragmentButtonDemoClicked(id);
-        }
-    }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnDetailsTrainingsFragmentCallback) {
-            mListener = (OnDetailsTrainingsFragmentCallback) context;
+        if (context instanceof OnTestingDetailsFragmentCallBack) {
+            mListener = (OnTestingDetailsFragmentCallBack) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnDefaultTrainingsFragmentCallBack");
+                    + " must implement OnTestingDetailsFragmentCallBack");
         }
     }
 
@@ -98,7 +90,11 @@ public class DetailsTrainingFragment extends Fragment {
         mListener = null;
     }
 
-
+    public void showTest(Test test){
+        if (mListener!=null){
+            mListener.OnTestingDetailsFragmentRunTestClicked(test);
+        }
+    }
 
     /**
      * This interface must be implemented by activities that contain this
@@ -110,8 +106,8 @@ public class DetailsTrainingFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnDetailsTrainingsFragmentCallback {
+    public interface OnTestingDetailsFragmentCallBack {
         // TODO: Update argument type and name
-        void onDetailsTrainingsFragmentButtonDemoClicked(int id);
+        void OnTestingDetailsFragmentRunTestClicked(Test test);
     }
 }

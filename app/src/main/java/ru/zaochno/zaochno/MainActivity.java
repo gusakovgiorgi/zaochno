@@ -2,6 +2,8 @@ package ru.zaochno.zaochno;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -11,8 +13,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import ru.zaochno.zaochno.dialogs.BuyDialogFragment;
+import ru.zaochno.zaochno.dialogs.FilterDialogFragment;
 import ru.zaochno.zaochno.message.MessagesFragment;
+import ru.zaochno.zaochno.model.Training;
+import ru.zaochno.zaochno.model.testing.Test;
 import ru.zaochno.zaochno.settings.UserProfileFragment;
+import ru.zaochno.zaochno.testing.TestingDetailsFragment;
+import ru.zaochno.zaochno.testing.TestingFragment;
 import ru.zaochno.zaochno.testing.TestingRootFragment;
 import ru.zaochno.zaochno.trainings.DefaultTreningsFragment;
 import ru.zaochno.zaochno.trainings.DetailsTrainingFragment;
@@ -21,7 +29,7 @@ import ru.zaochno.zaochno.trainings.ProgressTrainingsFragment;
 import ru.zaochno.zaochno.trainings.RootTrainingsFragment;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, DefaultTreningsFragment.OnTrainingDetailsCallBack,DetailsTrainingFragment.OnDetailsTrainingsFragmentCallback,ProgressTrainingsFragment.OnProgressTrainingsFragmentCallback {
+        implements NavigationView.OnNavigationItemSelectedListener, DefaultTreningsFragment.OnDefaultTrainingsFragmentCallBack,DetailsTrainingFragment.OnDetailsTrainingsFragmentCallback,ProgressTrainingsFragment.OnProgressTrainingsFragmentCallback,TestingDetailsFragment.OnTestingDetailsFragmentCallBack {
 
 
     @Override
@@ -118,11 +126,28 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onTrainingClicked(String data) {
+    public void onDefaultTrainingsFragmentTrainingClicked(Training training) {
         FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.mainFrameId, DetailsTrainingFragment.newInstance(data));
+        transaction.replace(R.id.mainFrameId, DetailsTrainingFragment.newInstance(training));
         transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    @Override
+    public void onDefaultTrainingsFragmentBuyTrainingClicked(Training training) {
+        // DialogFragment.show() will take care of adding the fragment
+        // in a transaction.  We also want to remove any currently showing
+        // dialog, so make our own transaction and take care of that here.
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        Fragment prev = getSupportFragmentManager().findFragmentByTag("buy_dialog");
+        if (prev != null) {
+            ft.remove(prev);
+        }
+        ft.addToBackStack(null);
+
+        // Create and show the dialog.
+        DialogFragment newFragment = BuyDialogFragment.newInstance(training);
+        newFragment.show(ft, "buy_dialog");
     }
 
     @Override
@@ -140,7 +165,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void OnTraininDetailsCallbackDemoButtonClicked(int trainingId) {
+    public void OnDefaultTrainingsFragmentDemoButtonClicked(int trainingId) {
         onDetailsTrainingsFragmentButtonDemoClicked(trainingId);
     }
 
@@ -148,6 +173,14 @@ public class MainActivity extends AppCompatActivity
     public void onSignUpExam(String examId) {
         FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.mainFrameId, ExamSignUpFragment.newInstance("fakeId"));
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
+    @Override
+    public void OnTestingDetailsFragmentRunTestClicked(Test test) {
+        FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.mainFrameId, TestingFragment.newInstance(test));
         transaction.addToBackStack(null);
         transaction.commit();
     }

@@ -3,9 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    tools:context="ru.zaochno.zaochno.testing.TestingFragment">
+    android:paddingLeft="16dp"
+    tools:context="ru.zaochno.zaochno.testing.TestingDetailsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <ImageView
         android:id="@+id/testingListViewItemImageId"
         android:layout_width="100dp"
@@ -16,6 +16,7 @@
         <TextView
             android:id="@+id/testingListViewItemTitleId"
             android:layout_toRightOf="@id/testingListViewItemImageId"
+            android:layout_marginLeft="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Заголовок" />
@@ -29,9 +30,7 @@
         android:layout_toRightOf="@id/testingListViewItemImageId">
 
         <TextView
-            android:id="@+id/testingListViewItemTextId"
-
-
+            android:id="@+id/testingListViewItemDescriptionTextId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="ТексттекстТекст ТексттекстТекст ТексттекстТекст
@@ -64,6 +63,7 @@
         android:indeterminate="false"
         android:max="100"/>
     <TextView
+        android:id="@+id/testingListViewItemProgressTextViewId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Прогресс 50%"

@@ -8,12 +8,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ListView;
-
-import java.util.List;
+import android.widget.Button;
+import android.widget.TextView;
 
 import ru.zaochno.zaochno.R;
+import ru.zaochno.zaochno.model.testing.Question;
+import ru.zaochno.zaochno.model.testing.Test;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,9 +27,11 @@ public class TestingFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
+    private ViewGroup mViewGroup;
+    private int questionNumber=0;
 
     // TODO: Rename and change types of parameters
-    private String id;
+    private Test mTest;
 
     private OnFragmentInteractionListener mListener;
 
@@ -37,11 +39,12 @@ public class TestingFragment extends Fragment {
         // Required empty public constructor
     }
 
+
     // TODO: Rename and change types and number of parameters
-    public static TestingFragment newInstance(String id) {
+    public static TestingFragment newInstance(Test test) {
         TestingFragment fragment = new TestingFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, id);
+        args.putParcelable(ARG_PARAM1, test);
         fragment.setArguments(args);
         return fragment;
     }
@@ -50,8 +53,7 @@ public class TestingFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            //todo use tis id for tabs
-            id = getArguments().getString(ARG_PARAM1);
+            mTest = getArguments().getParcelable(ARG_PARAM1);
         }
     }
 
@@ -65,9 +67,42 @@ public class TestingFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ListView lv=(ListView)view.findViewById(R.id.testingFragmentListViewId);
-        lv.setAdapter(new TestingsViewAdapter(getContext()));
+        mViewGroup=(ViewGroup)view.findViewById(R.id.testingPredicateLayouttId);
+        drawQuestion(questionNumber);
+
     }
+
+    private void drawQuestion(int number) {
+        if(mTest.getQuestions().size()>number){
+            final Question question=mTest.getQuestions().get(number);
+            TextView questionTv=(TextView)getView().findViewById(R.id.testingQuestionId);
+            questionTv.setText(question.getQuestion());
+            questionNumber++;
+            mViewGroup.removeAllViews();
+            for(int i=0;i<question.getAnswers().size();i++){
+
+                Button btn=new Button(getContext());
+                btn.setText(question.getAnswers().get(i));
+                btn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        drawQuestion(questionNumber);
+                    }
+                });
+                mViewGroup.addView(btn);
+            }
+        }else{
+            //todo clear other view
+            mViewGroup.removeAllViews();
+            TextView tv=new TextView(getContext());
+            tv.setText("тест Окончен");
+            mViewGroup.addView(tv);
+        }
+        mViewGroup.invalidate();
+    }
+
+
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
@@ -91,36 +126,6 @@ public class TestingFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
-    }
-
-    class TestingsViewAdapter extends BaseAdapter {
-        private LayoutInflater mInflater;
-
-        TestingsViewAdapter(Context context){
-            mInflater = (LayoutInflater) context
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        }
-
-        //todo do this adapter
-        @Override
-        public int getCount() {
-            return 2;
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return null;
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            return mInflater.inflate(R.layout.testing_list_view_item,parent,false);
-        }
     }
 
     /**

@@ -13,32 +13,44 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ru.zaochno.zaochno.FakeData;
 import ru.zaochno.zaochno.R;
+import ru.zaochno.zaochno.model.Training;
+import ru.zaochno.zaochno.model.TrainingsCategory;
+import ru.zaochno.zaochno.trainings.adapter.TreningsListViewAdapter;
 
 public class DefaultTreningsFragment extends Fragment {
 
 
+    private static final String ARG_PARAM1 ="param1" ;
+    private TrainingsCategory mTrainingCategory;
     private ListView mListview;
+    private TreningsListViewAdapter mAdapter;
 
-    private OnTrainingDetailsCallBack mListener;
+    private OnDefaultTrainingsFragmentCallBack mListener;
 
     public DefaultTreningsFragment() {
         // Required empty public constructor
     }
 
 
-    public static DefaultTreningsFragment newInstance() {
+    public static DefaultTreningsFragment newInstance(TrainingsCategory category) {
         DefaultTreningsFragment fragment = new DefaultTreningsFragment();
+        Bundle args = new Bundle();
+        args.putSerializable(ARG_PARAM1, category);
+        fragment.setArguments(args);
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        if (getArguments() != null) {
+            mTrainingCategory = (TrainingsCategory) getArguments().getSerializable(ARG_PARAM1);
+        }
     }
 
     @Override
@@ -52,7 +64,17 @@ public class DefaultTreningsFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mListview=(ListView)view.findViewById(R.id.defaultTreningListViewId);
-        mListview.setAdapter(new TreningsListViewAdapter(getContext(),FakeData.getDefaultTrenings()));
+        mAdapter=new TreningsListViewAdapter(this);
+
+        if(mTrainingCategory==TrainingsCategory.ALL){
+            mAdapter.setData(FakeData.getTrainings());
+        }else if(mTrainingCategory==TrainingsCategory.FAVORITES){
+            mAdapter.setData(FakeData.getFavoritesTraining());
+        }else if(mTrainingCategory==TrainingsCategory.BOUGHT){
+            mAdapter.setData(FakeData.getBoughtTraining());
+        }
+
+        mListview.setAdapter(mAdapter);
         mListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -66,11 +88,11 @@ public class DefaultTreningsFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnTrainingDetailsCallBack) {
-            mListener = (OnTrainingDetailsCallBack) context;
+        if (context instanceof OnDefaultTrainingsFragmentCallBack) {
+            mListener = (OnDefaultTrainingsFragmentCallBack) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnTrainingDetailsCallBack");
+                    + " must implement OnDefaultTrainingsFragmentCallBack");
         }
     }
 
@@ -80,47 +102,9 @@ public class DefaultTreningsFragment extends Fragment {
         mListener = null;
     }
 
-    class TreningsListViewAdapter extends BaseAdapter{
 
-        private List<String> data;
-        private LayoutInflater mInflater;
 
-        public TreningsListViewAdapter(Context ctx,List<String> data){
-            this.data=data;
-            mInflater = (LayoutInflater) ctx
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        }
-        @Override
-        public int getCount() {
-            return data.size();
-        }
 
-        @Override
-        public Object getItem(int position) {
-            return data.get(position);
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            View v=mInflater.inflate(R.layout.details_list_view_item,parent,false);
-            TextView text= (TextView) v.findViewById(R.id.list_item_shosrt_description_id);
-            text.setText(data.get(position));
-            Button btn=(Button)v.findViewById(R.id.defaultTrainingsFragmentDemoButtonId);
-            btn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int fakeId=0;
-                    demoButtonClicked(fakeId);
-                }
-            });
-            return v;
-        }
-    }
 
     /**
      * This interface must be implemented by activities that contain this
@@ -132,22 +116,28 @@ public class DefaultTreningsFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnTrainingDetailsCallBack {
+    public interface OnDefaultTrainingsFragmentCallBack {
         // TODO: change this to model
-        void onTrainingClicked(String data);
-        void OnTraininDetailsCallbackDemoButtonClicked(int trainingId);
+        void onDefaultTrainingsFragmentTrainingClicked(Training training);
+        void OnDefaultTrainingsFragmentDemoButtonClicked(int trainingId);
+        void onDefaultTrainingsFragmentBuyTrainingClicked(Training training);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
     private void onTrainingItemClicked(int position) {
         if (mListener != null) {
-            mListener.onTrainingClicked((String) mListview.getAdapter().getItem(position));
+            mListener.onDefaultTrainingsFragmentTrainingClicked((Training)mListview.getAdapter().getItem(position));
         }
     }
 
-    private void demoButtonClicked(int trainingId){
+    public void demoButtonClicked(int trainingId){
         if(mListener!=null){
-            mListener.OnTraininDetailsCallbackDemoButtonClicked(trainingId);
+            mListener.OnDefaultTrainingsFragmentDemoButtonClicked(trainingId);
+        }
+    }
+    public void buyTraining(Training training) {
+        if (mListener != null) {
+            mListener.onDefaultTrainingsFragmentBuyTrainingClicked(training);
         }
     }
 
