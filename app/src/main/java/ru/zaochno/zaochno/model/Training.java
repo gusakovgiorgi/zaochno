@@ -14,18 +14,19 @@ import ru.zaochno.zaochno.model.testing.Test;
 public class Training implements Parcelable{
     private int id;
     private String title;
-    private String Description;
+    private String description;
     private String imageUrl;
     private boolean isBought;
     private boolean isFavorite;
     private Category category;
+    private List<Chapter> chapters;
     private String price;
     private List<Test> tests;
 
     public Training(int id, String title, String description, String imageUrl, boolean isBought, boolean isFavorite, Category category, String price,List<Test> tests) {
         this.id = id;
         this.title = title;
-        Description = description;
+        this.description = description;
         this.imageUrl = imageUrl;
         this.isBought = isBought;
         this.isFavorite = isFavorite;
@@ -38,7 +39,7 @@ public class Training implements Parcelable{
     protected Training(Parcel in) {
         id = in.readInt();
         title = in.readString();
-        Description = in.readString();
+        description = in.readString();
         imageUrl = in.readString();
         isBought = in.readByte() != 0;
         isFavorite = in.readByte() != 0;
@@ -84,11 +85,11 @@ public class Training implements Parcelable{
     }
 
     public String getDescription() {
-        return Description;
+        return description;
     }
 
     public void setDescription(String description) {
-        Description = description;
+        this.description = description;
     }
 
     public String getImageUrl() {
@@ -142,7 +143,7 @@ public class Training implements Parcelable{
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(id);
         dest.writeString(title);
-        dest.writeString(Description);
+        dest.writeString(description);
         dest.writeString(imageUrl);
         dest.writeByte((byte) (isBought ? 1 : 0));
         dest.writeByte((byte) (isFavorite ? 1 : 0));

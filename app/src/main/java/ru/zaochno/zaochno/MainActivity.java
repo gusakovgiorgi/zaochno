@@ -12,7 +12,10 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.TextView;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import ru.zaochno.zaochno.dialogs.BuyDialogFragment;
 import ru.zaochno.zaochno.dialogs.FilterDialogFragment;
 import ru.zaochno.zaochno.message.MessagesFragment;
@@ -32,6 +35,9 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, DefaultTreningsFragment.OnDefaultTrainingsFragmentCallBack,DetailsTrainingFragment.OnDetailsTrainingsFragmentCallback,ProgressTrainingsFragment.OnProgressTrainingsFragmentCallback,TestingDetailsFragment.OnTestingDetailsFragmentCallBack {
 
 
+    @BindView(R.id.navigationDrawerUserNameTvId)
+    TextView mUserNameTv;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +45,11 @@ public class MainActivity extends AppCompatActivity
             startActivity(new Intent(this,LoginActivity.class));
             finish();
         }
+
         setContentView(R.layout.activity_main);
+
+        ButterKnife.bind(this);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -58,6 +68,8 @@ public class MainActivity extends AppCompatActivity
 
         onNavigationItemSelected(navigationView.getMenu().getItem(0));
         navigationView.getMenu().getItem(0).setChecked(true);
+
+        mUserNameTv.setText(FakeData.DUMMY_USER_DATA[0]);
     }
 
     @Override

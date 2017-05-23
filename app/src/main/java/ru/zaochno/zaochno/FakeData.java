@@ -14,7 +14,7 @@ import ru.zaochno.zaochno.model.testing.Test;
 
 public class FakeData {
 
-    private static boolean isUserLogin = false;
+    private static boolean isUserLogin = true;
     private static List<Training> trainings = new ArrayList<>();
     private static List<Test> tests=new ArrayList<>();
 
@@ -93,6 +93,17 @@ public class FakeData {
     public static void setIsUserLogin(boolean loginValue) {
         isUserLogin = loginValue;
     }
+
+    /**
+     * A dummy authentication store containing known user names and passwords.
+     * TODO: remove after connecting to a real authentication system.
+     */
+    public static final String[] DUMMY_CREDENTIALS = new String[]{
+            "admin@gmail.com:admin", "bar@example.com:world"
+    };
+    public static final String[] DUMMY_USER_DATA=new String[]{
+            "Петрова Анна Ивановна", "Георгов Георгий Георгиевич"
+    };
 
     public static List<Training> getTrainings() {
 
