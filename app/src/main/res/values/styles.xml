@@ -14,13 +14,17 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+<style name="TabBar" parent="AppTheme">
+    <item name="colorPrimary">?android:colorBackground</item>
+</style>
 
 
     <style name="NavMenuTheme" parent="AppTheme">
         <item name="android:listPreferredItemHeightSmall">38dp</item>
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"
+        />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 

@@ -8,10 +8,6 @@ import ru.zaochno.zaochno.model.Training;
 import ru.zaochno.zaochno.model.testing.Question;
 import ru.zaochno.zaochno.model.testing.Test;
 
-/**
- * Created by Anton_MoApps on 18.05.2017.
- */
-
 public class FakeData {
 
     private static boolean isUserLogin = true;
