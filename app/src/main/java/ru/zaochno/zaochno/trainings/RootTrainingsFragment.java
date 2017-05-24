@@ -35,7 +35,7 @@ public class RootTrainingsFragment extends Fragment {
     private static final String ARG_PARAM1 = "menu_item_param";
     private int menuId;
 
-    private OnFragmentInteractionCallback mListener;
+    private OnRootTrainingsFragmentCallback mListener;
 
     public RootTrainingsFragment() {
         menuId=R.id.navTreningId;
@@ -105,22 +105,16 @@ public class RootTrainingsFragment extends Fragment {
 
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-//        if (context instanceof OnFragmentInteractionCallback) {
-//            mListener = (OnFragmentInteractionCallback) context;
-//        } else {
-//            throw new RuntimeException(context.toString()
-//                    + " must implement OnFragmentInteractionCallback");
-//        }
+        if (context instanceof OnRootTrainingsFragmentCallback) {
+            mListener = (OnRootTrainingsFragmentCallback) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnRootTrainingsFragmentCallback");
+        }
     }
 
     @Override
@@ -135,6 +129,25 @@ public class RootTrainingsFragment extends Fragment {
         adapter.addFragment(DefaultTreningsFragment.newInstance(TrainingsCategory.FAVORITES), "Избранное");
         adapter.addFragment(DefaultTreningsFragment.newInstance(TrainingsCategory.BOUGHT), "Купленное");
         viewPager.setAdapter(adapter);
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                //0- is trenings and 1 - favorites it is corresponf to nav drawer items
+                if(position==0||position==1){
+                    setNavigarionDrawerItemTo(position);
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
     public class ViewPagerAdapter extends FragmentStatePagerAdapter {
@@ -169,19 +182,15 @@ public class RootTrainingsFragment extends Fragment {
 
     }
 
+    private void setNavigarionDrawerItemTo(int itemNumber) {
+        if(mListener!=null){
+            mListener.RootTrainingsFragmentChangeDrawerPosition(itemNumber);
+        }
+    }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionCallback {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+
+
+    public interface OnRootTrainingsFragmentCallback {
+        void RootTrainingsFragmentChangeDrawerPosition(int itemNumber);
     }
 }

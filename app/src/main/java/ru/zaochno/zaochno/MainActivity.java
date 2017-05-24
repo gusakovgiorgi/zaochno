@@ -17,7 +17,6 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ru.zaochno.zaochno.dialogs.BuyDialogFragment;
-import ru.zaochno.zaochno.dialogs.FilterDialogFragment;
 import ru.zaochno.zaochno.message.MessagesFragment;
 import ru.zaochno.zaochno.model.Training;
 import ru.zaochno.zaochno.model.testing.Test;
@@ -32,11 +31,15 @@ import ru.zaochno.zaochno.trainings.ProgressTrainingsFragment;
 import ru.zaochno.zaochno.trainings.RootTrainingsFragment;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, DefaultTreningsFragment.OnDefaultTrainingsFragmentCallBack,DetailsTrainingFragment.OnDetailsTrainingsFragmentCallback,ProgressTrainingsFragment.OnProgressTrainingsFragmentCallback,TestingDetailsFragment.OnTestingDetailsFragmentCallBack {
+        implements NavigationView.OnNavigationItemSelectedListener, DefaultTreningsFragment.OnDefaultTrainingsFragmentCallBack,
+        DetailsTrainingFragment.OnDetailsTrainingsFragmentCallback,ProgressTrainingsFragment.OnProgressTrainingsFragmentCallback,
+        TestingDetailsFragment.OnTestingDetailsFragmentCallBack,RootTrainingsFragment.OnRootTrainingsFragmentCallback {
 
 
     @BindView(R.id.navigationDrawerUserNameTvId)
     TextView mUserNameTv;
+    @BindView(R.id.nav_view)
+    NavigationView mNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,15 +62,14 @@ public class MainActivity extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        mNavigationView.setNavigationItemSelectedListener(this);
 
         // showing dot next to notifications label
-        navigationView.getMenu().getItem(3).setActionView(R.layout.message_counter);
+        mNavigationView.getMenu().getItem(3).setActionView(R.layout.message_counter);
 
 
-        onNavigationItemSelected(navigationView.getMenu().getItem(0));
-        navigationView.getMenu().getItem(0).setChecked(true);
+        onNavigationItemSelected(mNavigationView.getMenu().getItem(0));
+        mNavigationView.getMenu().getItem(0).setChecked(true);
 
         mUserNameTv.setText(FakeData.DUMMY_USER_DATA[0]);
     }
@@ -195,5 +197,10 @@ public class MainActivity extends AppCompatActivity
         transaction.replace(R.id.mainFrameId, TestingFragment.newInstance(test));
         transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    @Override
+    public void RootTrainingsFragmentChangeDrawerPosition(int itemNumber) {
+        mNavigationView.getMenu().getItem(itemNumber).setChecked(true);
     }
 }

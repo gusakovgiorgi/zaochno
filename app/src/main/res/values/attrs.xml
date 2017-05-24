@@ -10,4 +10,5 @@
         <attr name="civ_shadow_radius" format="float"/>
     </declare-styleable>
 
+
 </resources>
