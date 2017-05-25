@@ -35,19 +35,19 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_settings_black_24dp"/>
 
-        <!--<com.arlib.floatingsearchview.FloatingSearchView-->
-            <!--android:layout_toLeftOf="@id/rootTrainingsFragmentSettinsImageButtonId"-->
-            <!--android:id="@+id/floating_search_view"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--float:floatingSearch_searchBarMarginLeft="8dp"-->
-            <!--float:floatingSearch_searchBarMarginTop="8dp"-->
-            <!--float:floatingSearch_searchBarMarginRight="8dp"-->
-            <!--float:floatingSearch_searchHint="Search..."-->
-            <!--float:floatingSearch_suggestionsListAnimDuration="250"-->
-            <!--float:floatingSearch_showSearchKey="false"-->
-            <!--float:floatingSearch_leftActionMode="noLeftAction"-->
-            <!--float:floatingSearch_close_search_on_keyboard_dismiss="true"/>-->
+        <com.arlib.floatingsearchview.FloatingSearchView
+            android:layout_toLeftOf="@id/rootTrainingsFragmentSettinsImageButtonId"
+            android:id="@+id/floating_search_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            float:floatingSearch_searchBarMarginLeft="8dp"
+            float:floatingSearch_searchBarMarginTop="8dp"
+            float:floatingSearch_searchBarMarginRight="8dp"
+            float:floatingSearch_searchHint="Search..."
+            float:floatingSearch_suggestionsListAnimDuration="250"
+            float:floatingSearch_showSearchKey="false"
+            float:floatingSearch_leftActionMode="noLeftAction"
+            float:floatingSearch_close_search_on_keyboard_dismiss="true"/>
 
 
     </RelativeLayout>
