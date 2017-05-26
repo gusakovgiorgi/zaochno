@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -67,9 +68,9 @@ public class TreningsListViewAdapter extends BaseAdapter {
             viewHolder.mTite=(TextView)convertView.findViewById(R.id.detailsListViewItemTitleId);
             viewHolder.mShortDescription=(TextView)convertView.findViewById(R.id.detailsListViewItemShosrtDescriptionId);
             viewHolder.mImageVew=(ImageView)convertView.findViewById(R.id.detailsListViewItemImageViewId);
-            viewHolder.mDemoButton=(Button)convertView.findViewById(R.id.detailsListViewItemDemoButtonId);
-            viewHolder.mBuyButton=(Button)convertView.findViewById(R.id.detailsListViewItemBuyButtonId);
-            viewHolder.mFavoriteButton=(Button)convertView.findViewById(R.id.detailsListViewItemFavoritesButtonId);
+            viewHolder.mDemoButton=(LinearLayout)convertView.findViewById(R.id.detailsListViewItemDemoButtonId);
+            viewHolder.mBuyButton=(LinearLayout)convertView.findViewById(R.id.detailsListViewItemBuyButtonId);
+//            viewHolder.mFavoriteButton=(LinearLayout)convertView.findViewById(R.id.detailsListViewItemFavoritesButtonId);
             convertView.setTag(viewHolder);
         }else{
             viewHolder=(ViewHolder)convertView.getTag();
@@ -98,9 +99,9 @@ public class TreningsListViewAdapter extends BaseAdapter {
     static class ViewHolder {
         private TextView mShortDescription;
         private TextView mTite;
-        private Button mDemoButton;
-        private Button mFavoriteButton;
-        private Button mBuyButton;
+        private LinearLayout mDemoButton;
+        private LinearLayout mFavoriteButton;
+        private LinearLayout mBuyButton;
         private ImageView mImageVew;
     }
 }

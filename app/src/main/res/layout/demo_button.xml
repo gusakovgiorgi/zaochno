@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    style="@style/Widget.AppCompat.Button.Colored"
+    android:theme="@style/GreenButtonOverlay"
+    android:textSize="@dimen/button_text_size">
+
+    <ImageView
+        android:layout_width="@dimen/button_left_drawable_size"
+        android:layout_height="@dimen/button_left_drawable_size"
+        android:src="@drawable/demo_image"/>
+    <TextView
+        android:paddingLeft="8dp"
+        android:textSize="@dimen/button_text_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorWhite"
+        android:textAllCaps="true"
+        android:text="Демо"/>
+
+</LinearLayout>

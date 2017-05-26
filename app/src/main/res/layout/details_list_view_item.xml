@@ -3,6 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/colorWhiteGrey"
+    android:paddingBottom="8dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -24,6 +26,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="TextView"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimary"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="8dp"
         app:layout_constraintLeft_toRightOf="@+id/detailsListViewItemImageViewId"
@@ -50,16 +54,19 @@
         android:layout_marginEnd="8dp"
         app:layout_constraintVertical_bias="0.523" />
 
-    <Button
+    <include layout="@layout/buy_button_layout"
         android:id="@+id/detailsListViewItemBuyButtonId"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Купить"
         android:focusable="false"
-        app:layout_constraintTop_toTopOf="@+id/guideline"
 
+        app:layout_constraintTop_toTopOf="@+id/guideline"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/detailsListViewItemDemoButtonId" />
+        app:layout_constraintRight_toLeftOf="@+id/detailsListViewItemDemoButtonId"
+        android:layout_marginRight="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginLeft="8dp" />
 
     <android.support.constraint.Guideline
         android:layout_width="wrap_content"
@@ -70,25 +77,28 @@
         tools:layout_editor_absoluteY="211dp"
         tools:layout_editor_absoluteX="0dp" />
 
-    <Button
+    <include layout="@layout/demo_button"
         android:id="@+id/detailsListViewItemDemoButtonId"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Демо"
         android:focusable="false"
         app:layout_constraintLeft_toRightOf="@+id/detailsListViewItemBuyButtonId"
         app:layout_constraintTop_toTopOf="@+id/guideline"
-        app:layout_constraintRight_toLeftOf="@+id/detailsListViewItemFavoritesButtonId" />
+        app:layout_constraintRight_toLeftOf="@+id/detailsListViewItemFavoritesButtonId"
+        android:layout_marginTop="0dp"
+        android:layout_marginRight="4dp" />
 
-    <Button
+    <include layout="@layout/favorite_button"
+    android:orientation="horizontal"
         android:id="@+id/detailsListViewItemFavoritesButtonId"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="В избранное"
         android:focusable="false"
+
         app:layout_constraintTop_toTopOf="@+id/guideline"
         app:layout_constraintLeft_toRightOf="@+id/detailsListViewItemDemoButtonId"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="-7dp" />
+        android:layout_marginTop="0dp"
+        android:layout_marginRight="8dp" />
 
 </android.support.constraint.ConstraintLayout>
