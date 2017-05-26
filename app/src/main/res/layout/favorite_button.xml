@@ -12,7 +12,7 @@
         android:layout_height="@dimen/button_left_drawable_size"
         android:src="@drawable/favorite_image"/>
     <TextView
-        android:paddingLeft="8dp"
+        android:paddingLeft="@dimen/medium_spacing"
         android:textSize="@dimen/button_text_size"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

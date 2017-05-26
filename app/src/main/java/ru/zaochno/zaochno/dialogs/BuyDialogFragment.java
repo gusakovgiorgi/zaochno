@@ -32,7 +32,7 @@ public class BuyDialogFragment extends DialogFragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setStyle(DialogFragment.STYLE_NORMAL,android.R.style.Theme_Holo_Light_Dialog);
+        setStyle(DialogFragment.STYLE_NO_TITLE,android.R.style.Theme_Holo_Light_Dialog);
         if (getArguments() != null) {
             mTraining = getArguments().getParcelable(ARG_PARAM1);
         }
@@ -41,36 +41,11 @@ public class BuyDialogFragment extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Set title for this dialog
-        getDialog().setTitle(mTraining.getTitle());
+//        // Set title for this dialog
+//        getDialog().setTitle(mTraining.getTitle());
 
         View v = inflater.inflate(R.layout.fragment_buy_item, container, false);
 
-        // get seekbar from view
-//        final CrystalRangeSeekbar rangeSeekbar = (CrystalRangeSeekbar) v.findViewById(R.id.dialogFragmentRangeSeekbarId);
-
-//// get min and max text view
-//        final TextView tvMin = (TextView) rootView.findViewById(R.id.textMin1);
-//        final TextView tvMax = (TextView) rootView.findViewById(R.id.textMax1);
-//
-//// set listener
-//        rangeSeekbar.setOnRangeSeekbarChangeListener(new OnRangeSeekbarChangeListener() {
-//            @Override
-//            public void valueChanged(Number minValue, Number maxValue) {
-//                tvMin.setText(String.valueOf(minValue));
-//                tvMax.setText(String.valueOf(maxValue));
-//            }
-//        });
-//
-//// set final value listener
-//        rangeSeekbar.setOnRangeSeekbarFinalValueListener(new OnRangeSeekbarFinalValueListener() {
-//            @Override
-//            public void finalValue(Number minValue, Number maxValue) {
-//                Log.d("CRS=>", String.valueOf(minValue) + " : " + String.valueOf(maxValue));
-//            }
-//        });
-//        View tv = v.findViewById(R.id.text);
-//        ((TextView)tv).setText("This is an instance of MyDialogFragment");
         return v;
     }
 }

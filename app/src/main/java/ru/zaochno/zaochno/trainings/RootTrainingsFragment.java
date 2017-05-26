@@ -1,7 +1,6 @@
 package ru.zaochno.zaochno.trainings;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -64,7 +63,7 @@ public class RootTrainingsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_trenings, container, false);
+        return inflater.inflate(R.layout.fragment_trainings_root, container, false);
     }
 
     @Override
