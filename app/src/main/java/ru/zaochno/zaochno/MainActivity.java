@@ -24,14 +24,14 @@ import ru.zaochno.zaochno.settings.UserProfileFragment;
 import ru.zaochno.zaochno.testing.TestingDetailsFragment;
 import ru.zaochno.zaochno.testing.TestingFragment;
 import ru.zaochno.zaochno.testing.TestingRootFragment;
-import ru.zaochno.zaochno.trainings.DefaultTreningsFragment;
+import ru.zaochno.zaochno.trainings.DefaultTrainingsFragment;
 import ru.zaochno.zaochno.trainings.DetailsTrainingFragment;
 import ru.zaochno.zaochno.trainings.ExamSignUpFragment;
 import ru.zaochno.zaochno.trainings.ProgressTrainingsFragment;
 import ru.zaochno.zaochno.trainings.RootTrainingsFragment;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, DefaultTreningsFragment.OnDefaultTrainingsFragmentCallBack,
+        implements NavigationView.OnNavigationItemSelectedListener, DefaultTrainingsFragment.OnDefaultTrainingsFragmentCallBack,
         DetailsTrainingFragment.OnDetailsTrainingsFragmentCallback,ProgressTrainingsFragment.OnProgressTrainingsFragmentCallback,
         TestingDetailsFragment.OnTestingDetailsFragmentCallBack,RootTrainingsFragment.OnRootTrainingsFragmentCallback {
 

@@ -6,7 +6,7 @@
     android:orientation="vertical"
     tools:context="ru.zaochno.zaochno.settings.UserProfileFragment">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:background="@drawable/drawer_head_background"
@@ -15,16 +15,17 @@
         <ru.zaochno.zaochno.custom_view.CircularImageView
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/profile_image"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginTop="8dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:src="@drawable/default_profile"
             app:civ_shadow="true"
             app:civ_shadow_radius="10"
             app:civ_shadow_color="@color/light_gray"
             app:civ_border_width="2dp"
-            app:civ_border_color="@color/colorWhite"/>
-    </LinearLayout>
+            app:civ_border_color="@color/colorWhite"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
 
 
     <ScrollView
@@ -36,6 +37,7 @@
             android:id="@+id/email_login_form"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="@dimen/large_spacing"
             android:orientation="vertical">
 
             <android.support.design.widget.TextInputLayout
@@ -130,10 +132,13 @@
 
             <Button
                 android:id="@+id/userProfileFragmentSaveButtonId"
-                style="?android:textAppearanceSmall"
+                style="@style/Base.Widget.AppCompat.Button.Colored"
+                android:theme="@style/PrimaryButtonOverlay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginRight="32dp"
+                android:layout_marginLeft="32dp"
                 android:text="Сохранить"
                 android:textStyle="bold" />
 

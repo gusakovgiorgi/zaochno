@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ru.zaochno.zaochno.R;
+import ru.zaochno.zaochno.trainings.adapter.ProgressListViewAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -80,14 +82,14 @@ public class ProgressTrainingsFragment extends Fragment {
         data.add("fake3");
         lv.setAdapter(new ProgressListViewAdapter(getContext(),data));
 
-        Button examSingUpButton=(Button)view.findViewById(R.id.progressTrainingsFragmentExamSingUpButtonId);
+        LinearLayout examSingUpButton=(LinearLayout)view.findViewById(R.id.progressTrainingsFragmentExamSingUpButtonId);
         examSingUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 singUpExam("fake id");
             }
         });
-        Button startTestingBtn=(Button)view.findViewById(R.id.progressTrainingsFragmentstartTestingButtonId);
+        LinearLayout startTestingBtn=(LinearLayout)view.findViewById(R.id.progressTrainingsFragmentstartTestingButtonId);
         startTestingBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -132,39 +134,6 @@ public class ProgressTrainingsFragment extends Fragment {
         mListener = null;
     }
 
-    class ProgressListViewAdapter extends BaseAdapter {
-
-        private List<String> data;
-        private LayoutInflater mInflater;
-
-        public ProgressListViewAdapter(Context ctx,List<String> data){
-            this.data=data;
-            mInflater = (LayoutInflater) ctx
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        }
-        @Override
-        public int getCount() {
-            return data.size();
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return data.get(position);
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            View v=mInflater.inflate(R.layout.progress_list_view_item,parent,false);
-            TextView text= (TextView) v.findViewById(R.id.progressListViewItemHeaderId);
-            text.setText(data.get(position));
-            return v;
-        }
-    }
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated

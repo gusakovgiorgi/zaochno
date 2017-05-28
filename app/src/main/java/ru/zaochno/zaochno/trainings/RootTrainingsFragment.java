@@ -124,9 +124,9 @@ public class RootTrainingsFragment extends Fragment {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
-        adapter.addFragment(DefaultTreningsFragment.newInstance(TrainingsCategory.ALL), "Тренинги");
-        adapter.addFragment(DefaultTreningsFragment.newInstance(TrainingsCategory.FAVORITES), "Избранное");
-        adapter.addFragment(DefaultTreningsFragment.newInstance(TrainingsCategory.BOUGHT), "Купленное");
+        adapter.addFragment(DefaultTrainingsFragment.newInstance(TrainingsCategory.ALL), "Тренинги");
+        adapter.addFragment(DefaultTrainingsFragment.newInstance(TrainingsCategory.FAVORITES), "Избранное");
+        adapter.addFragment(DefaultTrainingsFragment.newInstance(TrainingsCategory.BOUGHT), "Купленное");
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override

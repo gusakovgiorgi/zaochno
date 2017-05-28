@@ -9,12 +9,14 @@
         android:id="@+id/testingRootFragmentAppBarId"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark">
+        >
 
         <android.support.design.widget.TabLayout
             android:id="@+id/testingTabLayoutId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:tabBackground="@drawable/tab_layout_background"
+            app:tabSelectedTextColor="@color/background"
             app:tabGravity="fill"
             app:tabMode="fixed" />
 

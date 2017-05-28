@@ -5,14 +5,23 @@
     android:layout_height="match_parent"
     tools:context="ru.zaochno.zaochno.message.MessagesFragment">
 
-   <Button
-       android:layout_width="wrap_content"
+   <include layout="@layout/new_message_button_layout"
+       android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:layout_gravity="center"
+       android:layout_marginTop="@dimen/medium_spacing"
+       android:layout_marginBottom="@dimen/medium_spacing"
+       android:layout_marginRight="@dimen/large_spacing"
+       android:layout_marginLeft="@dimen/large_spacing"
        android:text="Новое сообщение"/>
+
     <ListView
         android:id="@+id/messageFragmentListViewId"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></ListView>
+        android:layout_height="match_parent"
+        android:padding="8dp"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="12dp"
+        ></ListView>
 
 </LinearLayout>

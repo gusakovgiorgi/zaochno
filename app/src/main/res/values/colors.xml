@@ -10,5 +10,6 @@
     <color name="background">#EEEEEE</color>
     <color name="colorGrey">#d6d3d3</color>
     <color name="colorWhiteGrey">#FCFDFA</color>
+    <color name="colorDarkGrey">#bab7b7</color>
     <color name="colorYellow">#FFEC01</color>
 </resources>

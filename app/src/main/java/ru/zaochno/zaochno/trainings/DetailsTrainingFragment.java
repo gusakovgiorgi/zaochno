@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import ru.zaochno.zaochno.R;
@@ -65,7 +66,7 @@ public class DetailsTrainingFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         TextView descriptionTv= (TextView) view.findViewById(R.id.trainingDetailsDescriptionId);
         descriptionTv.setText(data.getDescription());
-        Button openTrainingProgressBtn=(Button)view.findViewById(R.id.trainingDetailsOpenProgressButtonId);
+        LinearLayout openTrainingProgressBtn=(LinearLayout)view.findViewById(R.id.trainingDetailsOpenProgressButtonId);
         openTrainingProgressBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -1,29 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorWhiteGrey"
+    android:paddingTop="@dimen/medium_spacing"
+    android:paddingRight="@dimen/medium_spacing"
+    android:paddingLeft="@dimen/large_spacing"
+    android:paddingBottom="@dimen/large_spacing">
 
-    <ImageButton
+    <ImageView
         android:id="@+id/messageListViewCloseImageButtonId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="26dp"
+        android:layout_height="26dp"
+        android:padding="4dp"
+        android:src="@drawable/ic_close_black_24dp"
+        android:background="@drawable/circular_button"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:src="@drawable/ic_close_black_24dp"
-        android:focusable="false"
         android:layout_alignParentEnd="true" />
     <TextView
+        android:layout_marginTop="-8dp"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimary"
+        android:layout_below="@id/messageListViewCloseImageButtonId"
         android:id="@+id/messageListViewMessageTitleId"
+        android:layout_marginBottom="@dimen/medium_spacing"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Заголовок Сообщения"/>
     <TextView
         android:id="@+id/messageListViewMessageStatusTextViewId"
-        android:layout_marginLeft="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/messageListViewMessageTitleId"
-        android:text="(Не прочтено)"/>
+        android:text="(Прочтено)"
+        android:layout_alignBaseline="@id/messageListViewMessageTitleId"
+        android:layout_toRightOf="@+id/messageListViewDateTextViewId"
+        android:layout_toEndOf="@+id/messageListViewDateTextViewId" />
     <TextView
         android:id="@+id/messageListViewDateTextViewId"
         android:layout_width="wrap_content"
@@ -35,9 +47,11 @@
         android:id="@+id/messageListViewMessageTextViewId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/messageListViewDateTextViewId"
 
-        android:text="Но и перешагнул в электронный дизайн. Его популяризации в новое время послужили публикация листов Letraset с образцами Lorem Ipsum в 60-х годах и, в более недавнее время, программы электронной вёрстки типа Aldus PageMaker, в шаблонах которых используется Lorem Ipsum."/>
+        android:text="Но и перешагнул в электронный дизайн. Его популяризации в новое время послужили публикация листов Letraset с образцами Lorem Ipsum в 60-х годах и, в более недавнее время, программы электронной вёрстки типа Aldus PageMaker, в шаблонах которых используется Lorem Ipsum."
+        android:layout_below="@+id/messageListViewDateTextViewId"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 
 

@@ -8,16 +8,18 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimary"
         android:text="@string/hello_blank_fragment"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginTop="@dimen/large_spacing"
+        android:layout_marginRight="@dimen/large_spacing"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginLeft="8dp"
+        android:layout_marginLeft="@dimen/large_spacing"
         app:layout_constraintLeft_toLeftOf="parent"
         android:id="@+id/trainingDetailsTitleId"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp" />
+        android:layout_marginStart="@dimen/large_spacing"
+        android:layout_marginEnd="@dimen/large_spacing" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -26,63 +28,58 @@
         app:srcCompat="@drawable/default_photo"
         android:layout_marginTop="24dp"
         app:layout_constraintTop_toBottomOf="@+id/trainingDetailsTitleId"
-        android:layout_marginRight="8dp"
+
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp" />
+
+        app:layout_constraintLeft_toLeftOf="parent" />
 
     <TextView
         android:id="@+id/trainingDetailsDescriptionId"
         android:layout_width="0dp"
-        android:layout_height="166dp"
+        android:layout_height="wrap_content"
+        android:minHeight="160dp"
         android:text="TextView"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/large_spacing"
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        android:layout_marginRight="8dp"
+        android:layout_marginRight="@dimen/large_spacing"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginLeft="8dp"
+        android:layout_marginLeft="@dimen/large_spacing"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp" />
+        android:layout_marginStart="@dimen/large_spacing"
+        android:layout_marginEnd="@dimen/large_spacing" />
 
-    <Button
+    <include layout="@layout/demo_button"
         android:id="@+id/trainingDetailsOpenProgressButtonId"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Демо"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/large_spacing"
         app:layout_constraintTop_toBottomOf="@+id/trainingDetailsDescriptionId"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/button5"
-        android:layout_marginLeft="8dp"
-        android:layout_marginStart="8dp" />
+        android:layout_marginLeft="@dimen/large_spacing"
+        android:layout_marginStart="@dimen/large_spacing" />
 
-    <Button
+    <include layout="@layout/favorite_button"
         android:id="@+id/button5"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="в избранное"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/large_spacing"
         app:layout_constraintTop_toBottomOf="@+id/trainingDetailsDescriptionId"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/trainingDetailsOpenProgressButtonId"
-        android:layout_marginRight="8dp"
-        android:layout_marginEnd="8dp" />
+        android:layout_marginRight="@dimen/large_spacing"
+        android:layout_marginEnd="@dimen/large_spacing" />
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="0dp"
-        android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginTop="8dp"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintVertical_bias="0.636">
 
@@ -90,11 +87,13 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="@drawable/no_padding_button_background"
             android:text="2345руб"/>
         <Button
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="@drawable/no_padding_button_background"
             android:text="Купить"/>
     </LinearLayout>
 

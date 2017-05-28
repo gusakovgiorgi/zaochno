@@ -5,8 +5,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -16,24 +16,24 @@ import java.util.List;
 
 import ru.zaochno.zaochno.R;
 import ru.zaochno.zaochno.model.Training;
-import ru.zaochno.zaochno.trainings.DefaultTreningsFragment;
+import ru.zaochno.zaochno.trainings.DefaultTrainingsFragment;
 
 /**
  * Created by notbl on 5/21/2017.
  */
 
-public class TreningsListViewAdapter extends BaseAdapter {
+public class TreningsListViewAdapter extends BaseAdapter{
 
 
     private List<Training> data;
     private LayoutInflater mInflater;
-    private DefaultTreningsFragment mDefaultTreningsFragment;
+    private DefaultTrainingsFragment mDefaultTreningsFragment;
 
     public TreningsListViewAdapter(Fragment fragment, List<Training> data){
         this.data=data;
         mInflater = (LayoutInflater) fragment.getContext()
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        mDefaultTreningsFragment=(DefaultTreningsFragment)fragment;
+        mDefaultTreningsFragment=(DefaultTrainingsFragment)fragment;
     }
     public TreningsListViewAdapter(Fragment fragment){
         this(fragment,new ArrayList<Training>());
@@ -60,17 +60,19 @@ public class TreningsListViewAdapter extends BaseAdapter {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-
         ViewHolder viewHolder;
         if(convertView==null){
-            convertView=mInflater.inflate(R.layout.details_list_view_item,parent,false);
+            convertView=mInflater.inflate(R.layout.default_list_view_item,parent,false);
             viewHolder=new ViewHolder();
             viewHolder.mTite=(TextView)convertView.findViewById(R.id.detailsListViewItemTitleId);
             viewHolder.mShortDescription=(TextView)convertView.findViewById(R.id.detailsListViewItemShosrtDescriptionId);
             viewHolder.mImageVew=(ImageView)convertView.findViewById(R.id.detailsListViewItemImageViewId);
             viewHolder.mDemoButton=(LinearLayout)convertView.findViewById(R.id.detailsListViewItemDemoButtonId);
             viewHolder.mBuyButton=(LinearLayout)convertView.findViewById(R.id.detailsListViewItemBuyButtonId);
-//            viewHolder.mFavoriteButton=(LinearLayout)convertView.findViewById(R.id.detailsListViewItemFavoritesButtonId);
+            viewHolder.mFavoriteButton=(LinearLayout)convertView.findViewById(R.id.detailsListViewItemFavoritesButtonId);
+            viewHolder.mListener=new TrainingItemClickListener(position);
+            //set click listener
+            convertView.setOnClickListener(viewHolder.mListener);
             convertView.setTag(viewHolder);
         }else{
             viewHolder=(ViewHolder)convertView.getTag();
@@ -93,8 +95,31 @@ public class TreningsListViewAdapter extends BaseAdapter {
             }
         });
 
+        viewHolder.mListener.setPosition(position);
+
+
+
         return convertView;
     }
+
+    class TrainingItemClickListener implements View.OnClickListener{
+
+        private int position;
+
+        public TrainingItemClickListener(int position) {
+            this.position = position;
+        }
+
+        public void setPosition(int position) {
+            this.position = position;
+        }
+
+        @Override
+        public void onClick(View v) {
+            mDefaultTreningsFragment.onTrainingItemClicked(position);
+        }
+    }
+
 
     static class ViewHolder {
         private TextView mShortDescription;
@@ -103,5 +128,6 @@ public class TreningsListViewAdapter extends BaseAdapter {
         private LinearLayout mFavoriteButton;
         private LinearLayout mBuyButton;
         private ImageView mImageVew;
+        private TrainingItemClickListener mListener;
     }
 }

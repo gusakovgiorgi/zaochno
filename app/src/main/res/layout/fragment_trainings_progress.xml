@@ -9,43 +9,40 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/hello_blank_fragment"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimary"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginTop="@dimen/large_spacing"
+        android:layout_marginRight="@dimen/large_spacing"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginLeft="8dp"
+        android:layout_marginLeft="@dimen/large_spacing"
         app:layout_constraintLeft_toLeftOf="parent"
         android:id="@+id/trainingDetailsTitleId"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp" />
+        android:layout_marginStart="@dimen/large_spacing"
+        android:layout_marginEnd="@dimen/large_spacing" />
 
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="0dp"
         android:layout_height="165dp"
         app:srcCompat="@drawable/default_photo"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="@dimen/large_spacing"
         app:layout_constraintTop_toBottomOf="@+id/trainingDetailsTitleId"
-        android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
         app:layout_constraintHorizontal_bias="0.0" />
     <ListView
         android:id="@+id/progressTrainingsFragmentListViewId"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="7dp"
+        android:layout_marginTop="@dimen/medium_spacing"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
-        android:layout_marginLeft="8dp"
+        android:layout_marginLeft="@dimen/large_spacing"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginRight="8dp"
+        android:layout_marginRight="@dimen/large_spacing"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginStart="@dimen/large_spacing"
+        android:layout_marginEnd="@dimen/large_spacing"
         app:layout_constraintBottom_toTopOf="@+id/progressTrainingsFragmentstartTestingButtonId"
         app:layout_constraintHorizontal_bias="0.0"></ListView>
 
@@ -55,29 +52,27 @@
         android:layout_height="wrap_content"
         android:text="Содержание:"
         android:textStyle="bold"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/large_spacing"
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        android:layout_marginLeft="8dp"
+        android:layout_marginLeft="@dimen/large_spacing"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginStart="8dp" />
+        android:layout_marginStart="@dimen/large_spacing" />
 
-    <Button
+    <include layout="@layout/enroll_button_layout"
         android:id="@+id/progressTrainingsFragmentExamSingUpButtonId"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:text="Записаться на экзамен"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="@dimen/large_spacing"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/progressTrainingsFragmentstartTestingButtonId" />
 
-    <Button
+    <include layout="@layout/start_testing_button_layout"
         android:id="@+id/progressTrainingsFragmentstartTestingButtonId"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:text="Начать тестирование"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="@dimen/large_spacing"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/progressTrainingsFragmentExamSingUpButtonId" />
 

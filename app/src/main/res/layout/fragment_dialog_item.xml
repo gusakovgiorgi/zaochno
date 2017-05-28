@@ -103,13 +103,13 @@
         </RelativeLayout>
 
         <Button
-            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/medium_spacing"
             android:layout_marginTop="@dimen/medium_spacing"
             android:text="Применить"
             android:textColor="@color/colorWhite"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:theme="@style/GreenButtonOverlay" />
 
     </LinearLayout>
