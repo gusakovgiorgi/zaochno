@@ -16,12 +16,13 @@
        android:text="Новое сообщение"/>
 
     <ListView
+        android:nestedScrollingEnabled="true"
         android:id="@+id/messageFragmentListViewId"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="8dp"
+        android:padding="@dimen/medium_spacing"
         android:divider="@android:color/transparent"
-        android:dividerHeight="12dp"
+        android:dividerHeight="@dimen/listview_divider_height"
         ></ListView>
 
 </LinearLayout>

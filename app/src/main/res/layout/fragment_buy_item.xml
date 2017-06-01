@@ -12,22 +12,19 @@
         android:background="@color/colorPrimary"
         android:orientation="horizontal">
         <TextView
+            style="@style/DialogHeaderTitleStyle"
             android:id="@+id/buyFragmentDialogTitleId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/large_spacing"
-            android:textColor="@color/colorWhite"
             android:layout_centerVertical="true"
-            android:textStyle="bold"
-            android:textSize="@dimen/dialog_title_size"
             android:text="Название тренинга:"/>
 
         <ImageView
             android:id="@+id/dialogFragmentCloseImageViewId"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/dialog_close_button_size"
+            android:layout_height="@dimen/dialog_close_button_size"
             android:layout_margin="@dimen/large_spacing"
             android:src="@drawable/ic_close"
             />

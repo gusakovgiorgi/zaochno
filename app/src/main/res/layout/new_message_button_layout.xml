@@ -11,12 +11,10 @@
         android:layout_height="@dimen/button_left_drawable_size"
         android:src="@drawable/new_message_image"/>
     <TextView
-        android:paddingLeft="8dp"
-        android:textSize="@dimen/button_text_size"
+        style="@style/ButtonTextStyle"
+        android:paddingLeft="@dimen/medium_spacing"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorWhite"
-        android:textAllCaps="true"
         android:text="Новое сообщение"/>
 
 </LinearLayout>

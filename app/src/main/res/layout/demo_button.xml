@@ -12,12 +12,10 @@
         android:layout_height="@dimen/button_left_drawable_size"
         android:src="@drawable/demo_image"/>
     <TextView
-        android:paddingLeft="8dp"
-        android:textSize="@dimen/button_text_size"
+        android:paddingLeft="@dimen/left_drawable_padding"
+        style="@style/ButtonTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorWhite"
-        android:textAllCaps="true"
         android:text="Демо"/>
 
 </LinearLayout>

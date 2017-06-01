@@ -6,10 +6,9 @@
     tools:context="ru.zaochno.zaochno.trainings.DetailsTrainingFragment">
 
     <TextView
+        style="@style/HeaderTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textColor="@color/colorPrimary"
         android:text="@string/hello_blank_fragment"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="@dimen/large_spacing"
@@ -24,9 +23,9 @@
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="0dp"
-        android:layout_height="166dp"
+        android:layout_height="@dimen/training_details_image_height"
         app:srcCompat="@drawable/default_photo"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="@dimen/extra_large_spacing"
         app:layout_constraintTop_toBottomOf="@+id/trainingDetailsTitleId"
 
         app:layout_constraintRight_toRightOf="parent"
@@ -37,7 +36,7 @@
         android:id="@+id/trainingDetailsDescriptionId"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:minHeight="160dp"
+        android:minHeight="@dimen/training_details_image_height"
         android:text="TextView"
         android:layout_marginTop="@dimen/large_spacing"
         app:layout_constraintTop_toBottomOf="@+id/imageView2"

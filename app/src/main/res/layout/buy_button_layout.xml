@@ -12,12 +12,10 @@
         android:layout_height="@dimen/button_left_drawable_size"
         android:src="@drawable/cart_image"/>
     <TextView
-        android:paddingLeft="8dp"
-        android:textSize="@dimen/button_text_size"
+        style="@style/ButtonTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorWhite"
-        android:textAllCaps="true"
+        android:paddingLeft="@dimen/left_drawable_padding"
         android:text="Купить"/>
 
 </LinearLayout>

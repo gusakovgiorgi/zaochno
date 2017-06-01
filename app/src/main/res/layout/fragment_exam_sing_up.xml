@@ -8,81 +8,83 @@
 
     <View
         android:layout_width="wrap_content"
-        android:background="@color/colorGrey"
-        android:layout_height="150dp"/>
+        android:layout_height="@dimen/enroll_exam_title_background_height"
+        android:background="@color/colorGrey" />
+
     <TextView
-        android:layout_marginTop="@dimen/large_spacing"
         android:id="@+id/examSignUpFragmentTitleId"
+        style="@style/HeaderTextStyle"
         android:layout_width="wrap_content"
-        android:textStyle="bold"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="Записаться на экзамен"
-        android:textColor="@color/colorPrimary"
-        android:layout_height="wrap_content" />
+        android:layout_marginTop="@dimen/large_spacing"
+        android:text="Записаться на экзамен" />
 
     <LinearLayout
-        android:layout_marginTop="@dimen/large_spacing"
-        android:layout_below="@id/examSignUpFragmentTitleId"
         android:id="@+id/examSignUpFragmentDatePickerFormId"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/examSignUpFragmentTitleId"
+        android:layout_marginBottom="@dimen/large_spacing"
         android:layout_marginLeft="@dimen/large_spacing"
         android:layout_marginRight="@dimen/large_spacing"
-        android:layout_marginBottom="@dimen/large_spacing"
-        android:orientation="vertical"
+        android:layout_marginTop="@dimen/large_spacing"
         android:background="@drawable/date_picker_background"
-        android:layout_height="wrap_content">
+        android:orientation="vertical">
+
         <TextView
-            android:layout_marginTop="@dimen/large_spacing"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginTop="@dimen/large_spacing"
             android:drawableLeft="@drawable/ic_access_time_black_24dp"
-            android:drawablePadding="4dp"
-            android:textSize="24dp"
-            android:text="Выберите Дату"/>
+            android:drawablePadding="@dimen/small_spacing"
+            android:text="Выберите Дату"
+            android:textSize="@dimen/enroll_exam_date_title_text_size" />
+
         <DatePicker
             android:id="@+id/datePicker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:calendarViewShown="false"
             android:datePickerMode="spinner"
-            android:elevation="5dp"
-            android:calendarViewShown="false" />
+            android:elevation="5dp" />
     </LinearLayout>
 
 
     <Spinner
-        android:layout_below="@id/examSignUpFragmentDatePickerFormId"
         android:id="@+id/examSignUpFragmentRegionSpinnerId"
+        style="@style/Widget.AppCompat.Spinner.Underlined"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:layout_below="@id/examSignUpFragmentDatePickerFormId"
         android:entries="@array/fakeList"
-        style="@style/Widget.AppCompat.Spinner.Underlined">
+        android:gravity="center">
 
     </Spinner>
 
     <Button
         android:id="@+id/examSingUpFragmentSingUpButtonId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/large_spacing"
-        android:layout_centerHorizontal="true"
         style="@style/Widget.AppCompat.Button.Colored"
-        android:theme="@style/PrimaryButtonOverlay"
+        android:layout_width="@dimen/enroll_exam_enroll_button_width"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/examSignUpFragmentRegionSpinnerId"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/large_spacing"
         android:text="Записаться"
-        android:layout_below="@id/examSignUpFragmentRegionSpinnerId"/>
+        android:theme="@style/PrimaryButtonOverlay" />
 
     <Button
         android:id="@+id/examSignUpFragmentexamSheduleButtonId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         style="@style/Widget.AppCompat.Button.Colored"
-        android:theme="@style/GreenButtonOverlay"
-        android:layout_marginBottom="@dimen/large_spacing"
+        android:layout_width="@dimen/enroll_exam_show_shedulle_button_width"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:text="Просмотр расписания"/>
+        android:layout_marginBottom="@dimen/large_spacing"
+        android:text="Просмотр расписания"
+        android:theme="@style/GreenButtonOverlay" />
 
 
 </RelativeLayout>

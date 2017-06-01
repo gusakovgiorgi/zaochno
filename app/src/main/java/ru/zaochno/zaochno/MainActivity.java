@@ -2,6 +2,7 @@ package ru.zaochno.zaochno;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -40,6 +41,8 @@ public class MainActivity extends AppCompatActivity
     TextView mUserNameTv;
     @BindView(R.id.nav_view)
     NavigationView mNavigationView;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,15 +97,21 @@ public class MainActivity extends AppCompatActivity
         switch (item.getItemId()){
             case R.id.navTreningId:
             case R.id.navFavoriteId:
+                enableToolBarScrolling();
                 transaction.replace(R.id.mainFrameId, RootTrainingsFragment.newInstance(item.getItemId()));
                 break;
             case R.id.navTestID:
+                enableToolBarScrolling();
                 transaction.replace(R.id.mainFrameId, TestingRootFragment.newInstance());
                 break;
             case R.id.navSettingsId:
+                disableToolBarScrolling();
                 transaction.replace(R.id.mainFrameId, UserProfileFragment.newInstance());
                 break;
             case R.id.navMessageId:
+                disableToolBarScrolling();
+//                params.setScrollFlags(AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL
+//                        | AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS);
                 transaction.replace(R.id.mainFrameId, MessagesFragment.newInstance());
                 break;
             case R.id.navExitId:
@@ -130,6 +139,26 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void disableToolBarScrolling() {
+        AppBarLayout.LayoutParams params =
+                (AppBarLayout.LayoutParams) toolbar.getLayoutParams();
+        if(params.getScrollFlags()!=0) {
+            params.setScrollFlags(0);
+            toolbar.setLayoutParams(params);
+        }
+    }
+
+    private void enableToolBarScrolling() {
+        AppBarLayout.LayoutParams params =
+                (AppBarLayout.LayoutParams) toolbar.getLayoutParams();
+        if(params.getScrollFlags()!=(AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL
+                        | AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS)) {
+            params.setScrollFlags(AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL
+                    | AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS);
+            toolbar.setLayoutParams(params);
+        }
     }
 
     private void startLoginActivity() {

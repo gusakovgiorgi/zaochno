@@ -8,85 +8,84 @@
 
     <ImageView
         android:id="@+id/testingListViewItemImageId"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/default_photo"/>
+        android:layout_width="@dimen/testing_listview_item_image_size"
+        android:layout_height="@dimen/testing_listview_item_image_size"
+        android:src="@drawable/default_photo" />
 
 
-        <TextView
-            android:id="@+id/testingListViewItemTitleId"
-            android:layout_toRightOf="@id/testingListViewItemImageId"
-            android:layout_marginLeft="@dimen/large_spacing"
-            android:layout_marginTop="@dimen/large_spacing"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textColor="@color/colorPrimary"
-            android:text="Заголовок" />
+    <TextView
+        android:id="@+id/testingListViewItemTitleId"
+        style="@style/HeaderTextStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/large_spacing"
+        android:layout_marginTop="@dimen/large_spacing"
+        android:layout_toRightOf="@id/testingListViewItemImageId"
+        android:text="Заголовок" />
+
     <LinearLayout
         android:id="@+id/testingListViewItemLayoutId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginLeft="16dp"
         android:layout_below="@id/testingListViewItemTitleId"
-        android:layout_toRightOf="@id/testingListViewItemImageId">
+        android:layout_marginLeft="16dp"
+        android:layout_toRightOf="@id/testingListViewItemImageId"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/testingListViewItemDescriptionTextId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="ТексттекстТекст ТексттекстТекст ТексттекстТекст
-ТексттекстТекст ТексттекстТекст ТексттекстТекст ТексттекстТекст ТексттекстТекст ТексттекстТекст ТексттекстТекст ТексттекстТекст "/>
+ТексттекстТекст ТексттекстТекст ТексттекстТекст ТексттекстТекст ТексттекстТекст ТексттекстТекст ТексттекстТекст ТексттекстТекст " />
+
         <TextView
             android:id="@+id/testingListViewItemExpireTextViewId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            android:text="Срок годности тренинга до 12.05.15 12:00" />
+            android:text="Срок годности тренинга до 12.05.15 12:00"
+            android:textSize="@dimen/testing_listview_item_expire_date_text_size"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
     <Button
         android:id="@+id/testingListViewItemContinueButtonId"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="13dp"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:theme="@style/PrimaryButtonOverlay"
-        android:text="Продолжить"
-        android:layout_below="@+id/testingListViewItemLayoutId"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
         android:layout_alignLeft="@+id/testingListViewItemLayoutId"
-        android:layout_alignStart="@+id/testingListViewItemLayoutId" />
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignStart="@+id/testingListViewItemLayoutId"
+        android:layout_below="@+id/testingListViewItemLayoutId"
+        android:layout_marginTop="@dimen/testing_listview_item_button_spacing"
+        android:text="Продолжить"
+        android:theme="@style/PrimaryButtonOverlay" />
 
     <ProgressBar
         android:id="@+id/testingListViewItemprogressBarId"
         style="?android:attr/progressBarStyleHorizontal"
-        android:theme="@style/ProgressBarStyleOverlay"
-        android:layout_width="100dp"
+        android:layout_width="@dimen/progress_border_width"
         android:layout_height="wrap_content"
-        android:indeterminate="false"
-        android:max="100"
-        android:layout_marginBottom="@dimen/medium_spacing"
         android:layout_alignBottom="@+id/testingListViewItemContinueButtonId"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_marginBottom="@dimen/medium_spacing"
         android:layout_toLeftOf="@+id/testingListViewItemLayoutId"
-        android:layout_toStartOf="@+id/testingListViewItemLayoutId" />
+        android:layout_toStartOf="@+id/testingListViewItemLayoutId"
+        android:indeterminate="false"
+        android:max="100"
+        android:theme="@style/ProgressBarStyleOverlay" />
+
     <TextView
         android:id="@+id/testingListViewItemProgressTextViewId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Прогресс 50%"
         android:layout_above="@id/testingListViewItemprogressBarId"
+        android:layout_alignEnd="@+id/testingListViewItemprogressBarId"
         android:layout_alignRight="@+id/testingListViewItemprogressBarId"
-        android:layout_alignEnd="@+id/testingListViewItemprogressBarId" />
-
-
-
+        android:text="Прогресс 50%" />
 
 
 </RelativeLayout>

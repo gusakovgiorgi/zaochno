@@ -14,6 +14,26 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="ButtonTextStyle">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textSize">@dimen/button_text_size</item>
+    </style>
+
+    <style name="HeaderTextStyle">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textSize">@dimen/title_text_size</item>
+    </style>
+
+    <style name="DialogHeaderTitleStyle">
+        <item name="android:layout_margin">@dimen/large_spacing</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">@dimen/dialog_title_size</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <style name="GreenButtonOverlay" parent="ThemeOverlay.AppCompat.Light">
         <item name="colorAccent">@color/colorAccent</item>
     </style>

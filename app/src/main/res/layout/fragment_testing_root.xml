@@ -17,6 +17,7 @@
             android:layout_height="wrap_content"
             app:tabBackground="@drawable/tab_layout_background"
             app:tabSelectedTextColor="@color/background"
+            app:tabIndicatorColor="@color/background"
             app:tabGravity="fill"
             app:tabMode="fixed" />
 

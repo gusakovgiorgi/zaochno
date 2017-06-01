@@ -13,7 +13,7 @@
 
     </TextView>
 <View
-    android:layout_width="2dp"
+    android:layout_width="@dimen/progress_border_width"
     android:layout_height="match_parent"
     android:background="?android:listDivider"/>
     <LinearLayout
@@ -26,10 +26,10 @@
         >
         <ImageView
             android:id="@+id/progressListViewItemDoneImageId"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
+            android:layout_width="@dimen/progress_done_image_size"
+            android:layout_height="@dimen/progress_done_image_size"
             android:src="@drawable/done_image"
-            android:paddingRight="5dp"
+            android:paddingRight="@dimen/progress_done_padding"
             android:visibility="visible"/>
         <TextView
             android:id="@+id/progressListViewItemProgressId"
