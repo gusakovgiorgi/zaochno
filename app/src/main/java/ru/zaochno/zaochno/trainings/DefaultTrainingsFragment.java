@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import ru.zaochno.zaochno.FakeData;
+import ru.zaochno.zaochno.MainActivity;
 import ru.zaochno.zaochno.R;
 import ru.zaochno.zaochno.model.Training;
 import ru.zaochno.zaochno.model.TrainingsCategory;
@@ -50,6 +51,7 @@ public class DefaultTrainingsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        MainActivity.enableToolBarScrolling();
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_default_trenings, container, false);
     }

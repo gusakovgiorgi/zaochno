@@ -41,8 +41,7 @@ public class MainActivity extends AppCompatActivity
     TextView mUserNameTv;
     @BindView(R.id.nav_view)
     NavigationView mNavigationView;
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
+    private static Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +55,7 @@ public class MainActivity extends AppCompatActivity
 
         ButterKnife.bind(this);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -97,19 +96,19 @@ public class MainActivity extends AppCompatActivity
         switch (item.getItemId()){
             case R.id.navTreningId:
             case R.id.navFavoriteId:
-                enableToolBarScrolling();
+//                enableToolBarScrolling();
                 transaction.replace(R.id.mainFrameId, RootTrainingsFragment.newInstance(item.getItemId()));
                 break;
             case R.id.navTestID:
-                enableToolBarScrolling();
+//                enableToolBarScrolling();
                 transaction.replace(R.id.mainFrameId, TestingRootFragment.newInstance());
                 break;
             case R.id.navSettingsId:
-                disableToolBarScrolling();
+//                disableToolBarScrolling();
                 transaction.replace(R.id.mainFrameId, UserProfileFragment.newInstance());
                 break;
             case R.id.navMessageId:
-                disableToolBarScrolling();
+//                disableToolBarScrolling();
 //                params.setScrollFlags(AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL
 //                        | AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS);
                 transaction.replace(R.id.mainFrameId, MessagesFragment.newInstance());
@@ -141,7 +140,10 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    private void disableToolBarScrolling() {
+    public static void disableToolBarScrolling() {
+        if(toolbar==null){
+            return;
+        }
         AppBarLayout.LayoutParams params =
                 (AppBarLayout.LayoutParams) toolbar.getLayoutParams();
         if(params.getScrollFlags()!=0) {
@@ -150,7 +152,10 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    private void enableToolBarScrolling() {
+    public static void enableToolBarScrolling() {
+        if(toolbar==null){
+            return;
+        }
         AppBarLayout.LayoutParams params =
                 (AppBarLayout.LayoutParams) toolbar.getLayoutParams();
         if(params.getScrollFlags()!=(AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL
@@ -195,20 +200,15 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onDetailsTrainingsFragmentButtonDemoClicked(int id) {
-
-//        switch (id){
-//            case R.id.trainingDetailsOpenProgressButtonId:
-//            case R.id.defaultTrainingsFragmentDemoButtonId:
                 FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.mainFrameId, ProgressTrainingsFragment.newInstance("fakeId"));
                 transaction.addToBackStack(null);
                 transaction.commit();
-
-//        }
     }
 
     @Override
     public void OnDefaultTrainingsFragmentDemoButtonClicked(int trainingId) {
+        disableToolBarScrolling();
         onDetailsTrainingsFragmentButtonDemoClicked(trainingId);
     }
 

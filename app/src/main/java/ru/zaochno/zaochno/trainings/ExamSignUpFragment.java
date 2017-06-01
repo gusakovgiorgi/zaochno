@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import ru.zaochno.zaochno.MainActivity;
 import ru.zaochno.zaochno.R;
 
 
@@ -33,15 +34,6 @@ public class ExamSignUpFragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ExamSignUpFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static ExamSignUpFragment newInstance(String examId) {
         ExamSignUpFragment fragment = new ExamSignUpFragment();
         Bundle args = new Bundle();
@@ -61,6 +53,7 @@ public class ExamSignUpFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        MainActivity.disableToolBarScrolling();
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_exam_sing_up, container, false);
     }

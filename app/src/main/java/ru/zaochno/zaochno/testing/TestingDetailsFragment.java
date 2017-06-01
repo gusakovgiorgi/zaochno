@@ -12,6 +12,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import ru.zaochno.zaochno.MainActivity;
 import ru.zaochno.zaochno.R;
 import ru.zaochno.zaochno.model.testing.Test;
 import ru.zaochno.zaochno.testing.adapter.TestingsViewAdapter;
@@ -60,6 +61,7 @@ public class TestingDetailsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        MainActivity.enableToolBarScrolling();
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_details_testing, container, false);
     }

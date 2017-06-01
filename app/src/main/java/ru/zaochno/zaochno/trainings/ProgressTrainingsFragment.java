@@ -16,6 +16,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import ru.zaochno.zaochno.MainActivity;
 import ru.zaochno.zaochno.R;
 import ru.zaochno.zaochno.trainings.adapter.ProgressListViewAdapter;
 
@@ -68,6 +69,7 @@ public class ProgressTrainingsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        MainActivity.disableToolBarScrolling();
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_trainings_progress, container, false);
     }

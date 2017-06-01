@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import ru.zaochno.zaochno.MainActivity;
 import ru.zaochno.zaochno.R;
 import ru.zaochno.zaochno.model.Training;
 
@@ -57,6 +58,7 @@ public class DetailsTrainingFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        MainActivity.disableToolBarScrolling();
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_training_details, container, false);
     }
