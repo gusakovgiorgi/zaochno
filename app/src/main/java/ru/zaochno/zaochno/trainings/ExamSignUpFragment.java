@@ -54,6 +54,7 @@ public class ExamSignUpFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         MainActivity.disableToolBarScrolling();
+        MainActivity.setEnableButtomLayout(false);
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_exam_sing_up, container, false);
     }

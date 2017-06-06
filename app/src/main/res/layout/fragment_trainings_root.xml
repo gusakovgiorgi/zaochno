@@ -24,42 +24,41 @@
     </android.support.design.widget.AppBarLayout>
 
 
-    <RelativeLayout
-        android:layout_alignParentBottom="true"
-        android:id="@+id/rootTrainingsFragmentButtomLayoutId"
-        android:layout_width="match_parent"
-        android:background="@color/colorPrimaryDark"
-        android:padding="8dp"
-        android:layout_height="60dp">
-        <ImageButton
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:id="@+id/rootTrainingsFragmentSettinsImageButtonId"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:scaleType="fitXY"
-            android:background="@color/colorPrimaryDark"
-            android:src="@drawable/filter_image"/>
+    <!--<RelativeLayout-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:id="@+id/rootTrainingsFragmentButtomLayoutId"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:background="@color/colorPrimaryDark"-->
+        <!--android:padding="8dp"-->
+        <!--android:layout_height="60dp">-->
+        <!--<ImageButton-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:id="@+id/rootTrainingsFragmentSettinsImageButtonId"-->
+            <!--android:layout_width="30dp"-->
+            <!--android:layout_height="30dp"-->
+            <!--android:scaleType="fitXY"-->
+            <!--android:background="@color/colorPrimaryDark"-->
+            <!--android:src="@drawable/filter_image"/>-->
 
-        <com.arlib.floatingsearchview.FloatingSearchView
-            android:layout_toLeftOf="@id/rootTrainingsFragmentSettinsImageButtonId"
-            android:id="@+id/floating_search_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            float:floatingSearch_searchBarMarginLeft="8dp"
-            float:floatingSearch_searchBarMarginTop="8dp"
-            float:floatingSearch_searchBarMarginRight="8dp"
-            float:floatingSearch_searchHint="Search..."
-            float:floatingSearch_suggestionsListAnimDuration="250"
-            float:floatingSearch_showSearchKey="false"
-            float:floatingSearch_leftActionMode="noLeftAction"
-            float:floatingSearch_close_search_on_keyboard_dismiss="true"/>
+        <!--<com.arlib.floatingsearchview.FloatingSearchView-->
+            <!--android:layout_toLeftOf="@id/rootTrainingsFragmentSettinsImageButtonId"-->
+            <!--android:id="@+id/floating_search_view"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--float:floatingSearch_searchBarMarginLeft="8dp"-->
+            <!--float:floatingSearch_searchBarMarginTop="8dp"-->
+            <!--float:floatingSearch_searchBarMarginRight="8dp"-->
+            <!--float:floatingSearch_searchHint="Search..."-->
+            <!--float:floatingSearch_suggestionsListAnimDuration="250"-->
+            <!--float:floatingSearch_showSearchKey="false"-->
+            <!--float:floatingSearch_leftActionMode="noLeftAction"-->
+            <!--float:floatingSearch_close_search_on_keyboard_dismiss="true"/>-->
 
-    </RelativeLayout>
+    <!--</RelativeLayout>-->
     <android.support.v4.view.ViewPager
         android:id="@+id/treningViewpagerId"
         android:layout_below="@id/rootFragmentAppBarId"
-        android:layout_above="@id/rootTrainingsFragmentButtomLayoutId"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />

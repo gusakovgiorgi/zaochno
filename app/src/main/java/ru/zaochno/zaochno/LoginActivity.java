@@ -12,6 +12,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -21,6 +22,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import ru.zaochno.zaochno.registration.RegistrationActivity;
 
 /**
  * A login screen that offers login via email/password.
@@ -75,7 +78,9 @@ public class LoginActivity extends AppCompatActivity {
         mForgotPasswordTv.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(LoginActivity.this,"run forgot password",Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this,"run tegistration",Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(LoginActivity.this, RegistrationActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -108,7 +113,7 @@ public class LoginActivity extends AppCompatActivity {
         // Check for a valid password, if the user entered one.
         if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
             mPasswordView.setError(getString(R.string.error_invalid_password));
-            mPasswordView.setHintTextColor(getColor(R.color.colorPrimary));
+            mPasswordView.setHintTextColor(getResources().getColor(R.color.colorPrimary));
             focusView = mPasswordView;
             cancel = true;
         }

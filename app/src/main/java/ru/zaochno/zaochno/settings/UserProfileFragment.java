@@ -29,15 +29,6 @@ public class UserProfileFragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment UserProfileFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static UserProfileFragment newInstance() {
         UserProfileFragment fragment = new UserProfileFragment();
         return fragment;
@@ -56,6 +47,7 @@ public class UserProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         MainActivity.enableToolBarScrolling();
+        MainActivity.setEnableButtomLayout(false);
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_user_profile, container, false);
     }

@@ -45,5 +45,37 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
         />
+    <RelativeLayout
+        android:layout_gravity="bottom|end"
+        android:id="@+id/bottomLayoutId"
+        android:layout_width="match_parent"
+        android:background="@color/colorPrimaryDark"
+        android:padding="8dp"
+        android:layout_height="60dp">
+        <ImageButton
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:id="@+id/filterImageButtonId"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:scaleType="fitXY"
+            android:background="@color/colorPrimaryDark"
+            android:src="@drawable/filter_image"/>
+
+        <com.arlib.floatingsearchview.FloatingSearchView
+            android:layout_toLeftOf="@id/filterImageButtonId"
+            android:id="@+id/floating_search_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:floatingSearch_searchBarMarginLeft="8dp"
+            app:floatingSearch_searchBarMarginTop="8dp"
+            app:floatingSearch_searchBarMarginRight="8dp"
+            app:floatingSearch_searchHint="Search..."
+            app:floatingSearch_suggestionsListAnimDuration="250"
+            app:floatingSearch_showSearchKey="false"
+            app:floatingSearch_leftActionMode="noLeftAction"
+            app:floatingSearch_close_search_on_keyboard_dismiss="true"/>
+
+    </RelativeLayout>
 
 </android.support.design.widget.CoordinatorLayout>

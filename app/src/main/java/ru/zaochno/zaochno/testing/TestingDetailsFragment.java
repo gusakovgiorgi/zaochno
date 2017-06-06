@@ -62,6 +62,7 @@ public class TestingDetailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         MainActivity.enableToolBarScrolling();
+        MainActivity.setEnableButtomLayout(false);
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_details_testing, container, false);
     }

@@ -18,6 +18,7 @@ import android.widget.ImageButton;
 import java.util.ArrayList;
 import java.util.List;
 
+import ru.zaochno.zaochno.MainActivity;
 import ru.zaochno.zaochno.R;
 import ru.zaochno.zaochno.dialogs.FilterDialogFragment;
 import ru.zaochno.zaochno.model.TrainingsCategory;
@@ -62,6 +63,8 @@ public class RootTrainingsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        MainActivity.enableToolBarScrolling();
+        MainActivity.setEnableButtomLayout(true);
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_trainings_root, container, false);
     }
@@ -79,26 +82,26 @@ public class RootTrainingsFragment extends Fragment {
                 mViewPager.setCurrentItem(1);
         }
 
-        ImageButton imageButton=(ImageButton)view.findViewById(R.id.rootTrainingsFragmentSettinsImageButtonId);
-        imageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // DialogFragment.show() will take care of adding the fragment
-                // in a transaction.  We also want to remove any currently showing
-                // dialog, so make our own transaction and take care of that here.
-                FragmentTransaction ft = getChildFragmentManager().beginTransaction();
-                Fragment prev = getChildFragmentManager().findFragmentByTag("dialog");
-                if (prev != null) {
-                    ft.remove(prev);
-                }
-                ft.addToBackStack(null);
-
-                // Create and show the dialog.
-                DialogFragment newFragment = FilterDialogFragment.newInstance();
-                newFragment.show(ft, "dialog");
-
-            }
-        });
+//        ImageButton imageButton=(ImageButton)view.findViewById(R.id.rootTrainingsFragmentSettinsImageButtonId);
+//        imageButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                // DialogFragment.show() will take care of adding the fragment
+//                // in a transaction.  We also want to remove any currently showing
+//                // dialog, so make our own transaction and take care of that here.
+//                FragmentTransaction ft = getChildFragmentManager().beginTransaction();
+//                Fragment prev = getChildFragmentManager().findFragmentByTag("dialog");
+//                if (prev != null) {
+//                    ft.remove(prev);
+//                }
+//                ft.addToBackStack(null);
+//
+//                // Create and show the dialog.
+//                DialogFragment newFragment = FilterDialogFragment.newInstance();
+//                newFragment.show(ft, "dialog");
+//
+//            }
+//        });
 
 
 

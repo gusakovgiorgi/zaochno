@@ -30,6 +30,7 @@
             android:exported="true"
             android:label="@string/title_activity_login" />
         <activity
+            android:theme="@style/AppTheme.NoActionBar"
             android:name=".registration.RegistrationActivity"
             android:exported="true"
             android:label="@string/title_activity_registration"></activity>

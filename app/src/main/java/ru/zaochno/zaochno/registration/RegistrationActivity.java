@@ -8,6 +8,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +31,9 @@ public class RegistrationActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         mViewPager = (ViewPager) findViewById(R.id.registrationActivityViewPagerId);
         setupViewPager(mViewPager);
 
@@ -39,8 +43,8 @@ public class RegistrationActivity extends AppCompatActivity{
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new ExtendedRegistrationFragment(), "Юридическое Лицо");
         adapter.addFragment(new SimpleRegistrationFragment(), "Физическое Лицо");
+        adapter.addFragment(new ExtendedRegistrationFragment(), "Юридическое Лицо");
         viewPager.setAdapter(adapter);
     }
 

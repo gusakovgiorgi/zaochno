@@ -6,24 +6,69 @@
     android:gravity="center"
     tools:context="ru.zaochno.zaochno.testing.TestingFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:id="@+id/simpleQuestionTextId"
-        android:layout_width="wrap_content"
+        android:id="@+id/testingFragmentTimeId"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Вопрос:"/>
+        android:gravity="center"
+        android:background="@color/colorGrey"
+        android:paddingTop="@dimen/medium_spacing"
+        android:paddingBottom="@dimen/medium_spacing"
+        android:paddingLeft="@dimen/large_spacing"
+        android:drawableLeft="@drawable/ic_access_time_black_24dp"
+        android:drawablePadding="@dimen/small_spacing"
+        android:text="Осталось времени 0.35 сек"
+        android:textSize="@dimen/title_text_size" />
+
+    <TextView
+        android:layout_below="@id/testingFragmentTimeId"
+        android:id="@+id/testingFragmentTitleId"
+        android:text="Название тренинга"
+        android:textSize="@dimen/title_text_size"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:id="@+id/testingFragmentImageViewId"
+        android:layout_below="@id/testingFragmentTitleId"
+        android:layout_width="match_parent"
+        android:scaleType="fitXY"
+        android:layout_height="@dimen/training_details_image_height"
+        android:src="@drawable/training_details_default_image"/>
     <TextView
         android:id="@+id/testingQuestionId"
-        android:layout_below="@id/simpleQuestionTextId"
+        android:layout_below="@id/testingFragmentImageViewId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="вопросс?" />
-    <TextView
-        android:id="@+id/simpleAnswersTextId"
+        android:text="вопросс" />
+
+    <LinearLayout
+        android:id="@+id/simpleAnswersLayoutId"
         android:layout_below="@id/testingQuestionId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Варианты ответов:"/>
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:background="@color/colorGrey"/>
+        <TextView
+            android:id="@+id/simpleAnswersTextId"
+            android:paddingLeft="@dimen/large_spacing"
+            android:paddingRight="@dimen/large_spacing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/title_text_size"
+            android:textStyle="bold"
+            android:text="Варианты ответов"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorGrey"/>
+
+    </LinearLayout>
+
 
     <LinearLayout
         android:id="@+id/simpleButtonsLayoutId"
@@ -46,7 +91,7 @@
     </LinearLayout>
 
     <ScrollView
-        android:layout_below="@id/simpleAnswersTextId"
+        android:layout_below="@id/simpleAnswersLayoutId"
         android:layout_above="@id/simpleButtonsLayoutId"
         android:layout_width="match_parent"
         android:layout_height="match_parent">

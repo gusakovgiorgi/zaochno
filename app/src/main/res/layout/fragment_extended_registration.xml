@@ -7,14 +7,14 @@
     tools:context="ru.zaochno.zaochno.registration.RegistrationActivity">
 
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:paddingTop="@dimen/large_spacing"
-        android:paddingBottom="@dimen/large_spacing"
-        android:background="@color/colorWhiteGrey"
-        android:src="@drawable/logo_transparent" />
+    <!--<ImageView-->
+        <!--android:id="@+id/imageView"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="100dp"-->
+        <!--android:paddingTop="@dimen/large_spacing"-->
+        <!--android:paddingBottom="@dimen/large_spacing"-->
+        <!--android:background="@color/colorWhiteGrey"-->
+        <!--android:src="@drawable/logo_transparent" />-->
     <!-- Login progress -->
     <ProgressBar
         android:id="@+id/registrationExtendedFragmentLoginProgressId"
@@ -24,7 +24,7 @@
         android:layout_marginBottom="8dp"
         android:visibility="gone" />
 
-    <ScrollView
+    <android.support.v4.widget.NestedScrollView
         android:id="@+id/extendedRegistrationFragmentLoginFormId"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -49,7 +49,7 @@
                     android:layout_height="wrap_content"
                     android:hint="E-Маил"
                     android:imeOptions="actionUnspecified"
-                    android:inputType="textPassword"
+                    android:inputType="textEmailAddress"
                     android:maxLines="1"
                     android:singleLine="true" />
 
@@ -65,7 +65,7 @@
                     android:layout_height="wrap_content"
                     android:hint="Имя ген директора"
                     android:imeOptions="actionUnspecified"
-                    android:inputType="textPassword"
+                    android:inputType="text"
                     android:maxLines="1"
                     android:singleLine="true" />
 
@@ -81,7 +81,7 @@
                     android:layout_height="wrap_content"
                     android:hint="Кор. счёт"
                     android:imeOptions="actionUnspecified"
-                    android:inputType="text|number"
+                    android:inputType="number"
                     android:maxLines="1"
                     android:singleLine="true" />
 
@@ -121,10 +121,59 @@
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:id="@+id/extendedRegistrationFragmentAddressId"
+                    android:id="@+id/extendedRegistrationFragmentPostCityId"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Улица, дом, офис"
+                    android:hint="Город(Для почтового адресса)"
+                    android:imeOptions="actionUnspecified"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/extendedRegistrationFragmentPostAddressId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Улица, дом, офис(Для почтового адресса)"
+                    android:imeOptions="actionUnspecified"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+            </android.support.design.widget.TextInputLayout>
+
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/extendedRegistrationFragmentFactCityId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Город(Для фактического адресса)"
+                    android:imeOptions="actionUnspecified"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/extendedRegistrationFragmentFactAddressId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Улица, дом, офис(Для фактичесткого адресса)"
                     android:imeOptions="actionUnspecified"
                     android:inputType="text"
                     android:maxLines="1"
@@ -141,7 +190,7 @@
                     android:id="@+id/extendedRegistrationFragmentOPFId"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="ОПФ"
+                    android:hint="Организационно правовая форма"
                     android:imeOptions="actionUnspecified"
                     android:inputType="text"
                     android:maxLines="1"
@@ -174,7 +223,22 @@
                     android:layout_height="wrap_content"
                     android:hint="КПП"
                     android:imeOptions="actionUnspecified"
-                    android:inputType="text"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/extendedRegistrationFragmentInnId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="ИНН"
+                    android:imeOptions="actionUnspecified"
+                    android:inputType="number"
                     android:maxLines="1"
                     android:singleLine="true" />
 
@@ -189,7 +253,7 @@
                     android:layout_height="wrap_content"
                     android:hint="Расчётный счёт"
                     android:imeOptions="actionUnspecified"
-                    android:inputType="text|number"
+                    android:inputType="number"
                     android:maxLines="1"
                     android:singleLine="true" />
 
@@ -205,7 +269,7 @@
                     android:layout_height="wrap_content"
                     android:hint="БИК"
                     android:imeOptions="actionUnspecified"
-                    android:inputType="text"
+                    android:inputType="number"
                     android:maxLines="1"
                     android:singleLine="true" />
 
@@ -227,21 +291,7 @@
 
             </android.support.design.widget.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
 
-                <EditText
-                    android:id="@+id/extendedRegistrationFragmentCityId"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Город"
-                    android:imeOptions="actionUnspecified"
-                    android:inputType="text"
-                    android:maxLines="1"
-                    android:singleLine="true" />
-
-            </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -274,5 +324,5 @@
                 android:textStyle="bold" />
 
         </LinearLayout>
-    </ScrollView>
+    </android.support.v4.widget.NestedScrollView>
 </LinearLayout>

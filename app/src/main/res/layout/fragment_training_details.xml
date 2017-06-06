@@ -24,7 +24,8 @@
         android:id="@+id/imageView2"
         android:layout_width="0dp"
         android:layout_height="@dimen/training_details_image_height"
-        app:srcCompat="@drawable/default_photo"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/training_details_default_image"
         android:layout_marginTop="@dimen/extra_large_spacing"
         app:layout_constraintTop_toBottomOf="@+id/trainingDetailsTitleId"
 
@@ -37,6 +38,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:minHeight="@dimen/training_details_image_height"
+        android:textSize="@dimen/small_text_size"
         android:text="TextView"
         android:layout_marginTop="@dimen/large_spacing"
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
