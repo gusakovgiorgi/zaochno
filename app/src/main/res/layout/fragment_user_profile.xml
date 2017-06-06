@@ -8,15 +8,15 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="@dimen/user_profile_header_size"
         android:background="@drawable/drawer_head_background"
         android:orientation="vertical">
 
         <ru.zaochno.zaochno.custom_view.CircularImageView
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/profile_image"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="@dimen/profile_image_size"
+            android:layout_height="@dimen/profile_image_size"
             android:src="@drawable/default_profile"
             app:civ_shadow="true"
             app:civ_shadow_radius="10"

@@ -60,4 +60,8 @@
     <dimen name="nav_header_vertical_spacing">32dp</dimen>
     <dimen name="nav_header_height">210dp</dimen>
 
+    <dimen name="user_profile_header_size">200dp</dimen>
+
+    <dimen name="training_details_image_view_size">132dp</dimen>
+
 </resources>

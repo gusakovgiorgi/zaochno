@@ -23,7 +23,7 @@
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="0dp"
-        android:layout_height="@dimen/training_details_image_height"
+        android:layout_height="132dp"
         android:scaleType="fitXY"
         app:srcCompat="@drawable/training_details_default_image"
         android:layout_marginTop="@dimen/extra_large_spacing"
@@ -37,7 +37,7 @@
         android:id="@+id/trainingDetailsDescriptionId"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:minHeight="@dimen/training_details_image_height"
+        android:height="@dimen/training_details_image_height"
         android:textSize="@dimen/small_text_size"
         android:text="TextView"
         android:layout_marginTop="@dimen/large_spacing"
@@ -60,7 +60,8 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/button5"
         android:layout_marginLeft="@dimen/large_spacing"
-        android:layout_marginStart="@dimen/large_spacing" />
+        android:layout_marginStart="@dimen/large_spacing"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout" />
 
     <include layout="@layout/favorite_button"
         android:id="@+id/button5"
@@ -72,7 +73,8 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/trainingDetailsOpenProgressButtonId"
         android:layout_marginRight="@dimen/large_spacing"
-        android:layout_marginEnd="@dimen/large_spacing" />
+        android:layout_marginEnd="@dimen/large_spacing"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout" />
 
     <LinearLayout
         android:layout_width="0dp"
@@ -82,7 +84,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintVertical_bias="0.636">
+        android:id="@+id/linearLayout">
 
         <Button
             android:layout_width="0dp"

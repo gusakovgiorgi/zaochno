@@ -25,7 +25,6 @@
     <string name="title_activity_registration">Регистрация</string>
 
     <string-array name="fakeList">
-        <item></item>
         <item>Регион 1</item>
         <item>Регион 2</item>
         <item>Регион 3</item>

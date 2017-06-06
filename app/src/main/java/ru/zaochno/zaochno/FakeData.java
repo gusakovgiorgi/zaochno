@@ -10,7 +10,7 @@ import ru.zaochno.zaochno.model.testing.Test;
 
 public class FakeData {
 
-    private static boolean isUserLogin = false;
+    private static boolean isUserLogin = true;
     private static List<Training> trainings = new ArrayList<>();
     private static List<Test> tests=new ArrayList<>();
 
