@@ -49,7 +49,20 @@
         android:id="@+id/navExitId"
         android:icon="@drawable/ic_vector_exit"
         android:title="Выход" />
+
     </group>
+    <item
+        android:id="@+id/footer_spacer_1"
+        android:checkable="false"
+        android:enabled="false"
+        android:orderInCategory="200"
+        android:title="" />
+    <item
+        android:id="@+id/footer_spacer_2"
+        android:checkable="false"
+        android:enabled="false"
+        android:orderInCategory="200"
+        android:title="" />
     <!--<item-->
         <!--android:id="@+id/navUserNameId"-->
         <!--android:title="User Name"-->

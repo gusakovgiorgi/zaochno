@@ -13,7 +13,6 @@
 
     <dimen name="default_training_image_width">130dp</dimen>
 
-    <dimen name="training_details_image_height">168dp</dimen>
 
     <dimen name="logo_height">48dp</dimen>
     <dimen name="profile_image_size">145dp</dimen>
@@ -57,11 +56,17 @@
     <!--navigation drawer parameters-->
     <dimen name="design_navigation_icon_size" tools:override="true">56dp</dimen>
     <dimen name="design_navigation_separator_vertical_padding" tools:override="true">0dp</dimen>
-    <dimen name="nav_header_vertical_spacing">32dp</dimen>
+    <!--<dimen name="nav_header_vertical_spacing">32dp</dimen>-->
     <dimen name="nav_header_height">210dp</dimen>
 
     <dimen name="user_profile_header_size">200dp</dimen>
 
     <dimen name="training_details_image_view_size">132dp</dimen>
 
+    <dimen name="training_details_text_view_max_height">170dp</dimen>
+
+    <dimen name="search_view_height">60dp</dimen>
+
 </resources>
+
+

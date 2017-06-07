@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -73,6 +74,7 @@ public class TestingFragment extends Fragment {
     }
 
     private void drawQuestion(int number) {
+        LayoutInflater inflater=LayoutInflater.from(getContext());
         if(mTest.getQuestions().size()>number){
             final Question question=mTest.getQuestions().get(number);
             TextView questionTv=(TextView)getView().findViewById(R.id.testingQuestionId);
@@ -81,7 +83,8 @@ public class TestingFragment extends Fragment {
             mViewGroup.removeAllViews();
             for(int i=0;i<question.getAnswers().size();i++){
 
-                Button btn=new Button(getContext());
+                Button btn= (Button) inflater.inflate(R.layout.answer_bytton_layout,null);
+//                btn.styl
                 btn.setText(question.getAnswers().get(i));
                 btn.setOnClickListener(new View.OnClickListener() {
                     @Override

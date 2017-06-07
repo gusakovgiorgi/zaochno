@@ -51,7 +51,7 @@
         android:layout_width="match_parent"
         android:background="@color/colorPrimaryDark"
         android:padding="8dp"
-        android:layout_height="60dp">
+        android:layout_height="@dimen/search_view_height">
         <ImageButton
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"

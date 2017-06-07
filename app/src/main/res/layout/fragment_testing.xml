@@ -34,7 +34,7 @@
         android:layout_below="@id/testingFragmentTitleId"
         android:layout_width="match_parent"
         android:scaleType="fitXY"
-        android:layout_height="@dimen/training_details_image_height"
+        android:layout_height="@dimen/training_details_image_view_size"
         android:src="@drawable/training_details_default_image"/>
     <TextView
         android:id="@+id/testingQuestionId"
