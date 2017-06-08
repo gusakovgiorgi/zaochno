@@ -17,13 +17,17 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.birbit.android.jobqueue.JobManager;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ru.zaochno.zaochno.dialogs.BuyDialogFragment;
 import ru.zaochno.zaochno.dialogs.FilterDialogFragment;
+import ru.zaochno.zaochno.job.LoadCategoryJob;
 import ru.zaochno.zaochno.message.MessagesFragment;
 import ru.zaochno.zaochno.model.Training;
 import ru.zaochno.zaochno.model.testing.Test;
+import ru.zaochno.zaochno.model.user.UserManager;
 import ru.zaochno.zaochno.settings.UserProfileFragment;
 import ru.zaochno.zaochno.testing.TestingDetailsFragment;
 import ru.zaochno.zaochno.testing.TestingFragment;
@@ -52,7 +56,8 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (!FakeData.isUserLogin()) {
+
+        if(!UserManager.getInstance().isUserLogIn()){
             startActivity(new Intent(this, LoginActivity.class));
             finish();
         }
@@ -84,6 +89,8 @@ public class MainActivity extends AppCompatActivity
         mUserNameTv.setText(FakeData.DUMMY_USER_DATA[0]);
 
         setupBottomLayout();
+
+        MainApplication.getInstance().getJobManager().addJobInBackground(new LoadCategoryJob());
     }
 
     private void setupBottomLayout() {

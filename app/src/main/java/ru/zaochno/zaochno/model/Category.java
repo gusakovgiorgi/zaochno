@@ -3,14 +3,19 @@ package ru.zaochno.zaochno.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 public class Category implements Parcelable {
+    @SerializedName("id")
     private int categoryId;
+    @SerializedName("name")
     private String categoryName;
+    @SerializedName("subcats")
     List<Category> subcategories;
 
-    public Category(int categoryId, String categoryName, String htmlText, List<Category> subcategories) {
+    public Category(int categoryId, String categoryName, List<Category> subcategories) {
         this.categoryId = categoryId;
         this.categoryName = categoryName;
         this.subcategories = subcategories;
@@ -73,5 +78,12 @@ public class Category implements Parcelable {
         return 0;
     }
 
-
+    @Override
+    public String toString() {
+        return "Category{" +
+                "categoryId=" + categoryId +
+                ", categoryName='" + categoryName + '\'' +
+                ", subcategories=" + subcategories +
+                '}';
+    }
 }

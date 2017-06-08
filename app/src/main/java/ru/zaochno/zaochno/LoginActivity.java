@@ -23,7 +23,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
+
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import ru.zaochno.zaochno.model.user.UserManager;
 import ru.zaochno.zaochno.registration.RegistrationActivity;
+import ru.zaochno.zaochno.rest.login.LoginAPI;
+import ru.zaochno.zaochno.rest.login.LoginGetData;
+import ru.zaochno.zaochno.rest.login.LoginSendData;
 
 /**
  * A login screen that offers login via email/password.
@@ -71,22 +80,19 @@ public class LoginActivity extends AppCompatActivity {
 
         mLoginFormView = findViewById(R.id.extendedRegistrationFragmentLoginFormId);
         mProgressView = findViewById(R.id.registrationExtendedFragmentLoginProgressId);
-        mForgotPasswordTv=(TextView)findViewById(R.id.extendedRegistrationFragmentGenDirectorName);
+        mForgotPasswordTv = (TextView) findViewById(R.id.extendedRegistrationFragmentGenDirectorName);
 
-        mForgotPasswordTv.setPaintFlags(mForgotPasswordTv.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
+        mForgotPasswordTv.setPaintFlags(mForgotPasswordTv.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
         mForgotPasswordTv.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(LoginActivity.this,"run tegistration",Toast.LENGTH_SHORT).show();
-                Intent intent=new Intent(LoginActivity.this, RegistrationActivity.class);
+                Toast.makeText(LoginActivity.this, "run tegistration", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(LoginActivity.this, RegistrationActivity.class);
                 startActivity(intent);
             }
         });
     }
-
-
-
 
 
     /**
@@ -189,8 +195,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-
-
     /**
      * Represents an asynchronous login/registration task used to authenticate
      * the user.
@@ -209,22 +213,18 @@ public class LoginActivity extends AppCompatActivity {
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
 
+            LoginAPI loginAPI = MainApplication.getInstance().getRetrofit().create(LoginAPI.class);
+            Response<LoginGetData> data = null;
             try {
-                // Simulate network access.
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                return false;
-            }
-
-            for (String credential : FakeData.DUMMY_CREDENTIALS) {
-                String[] pieces = credential.split(":");
-                if (pieces[0].equals(mEmail)) {
-                    // Account exists, return true if the password matches.
-                    return pieces[1].equals(mPassword);
+                data = loginAPI.loginAttempt(new LoginSendData(mEmail, mPassword)).execute();
+                if(data.isSuccessful() && data.body().getToken()!=null){
+                    UserManager.getInstance().createUser(data.body().getToken());
                 }
+                return true;
+            } catch (IOException e) {
+                e.printStackTrace();
             }
 
-            // TODO: register the new account here.
             return false;
         }
 
@@ -234,8 +234,7 @@ public class LoginActivity extends AppCompatActivity {
             showProgress(false);
 
             if (success) {
-                FakeData.setIsUserLogin(true);
-                startActivity(new Intent(LoginActivity.this,MainActivity.class));
+                startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 finish();
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
