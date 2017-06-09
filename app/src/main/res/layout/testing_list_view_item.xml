@@ -10,7 +10,7 @@
         android:id="@+id/testingListViewItemImageId"
         android:layout_width="@dimen/testing_listview_item_image_size"
         android:layout_height="@dimen/testing_listview_item_image_size"
-        android:src="@drawable/default_photo" />
+        android:src="@drawable/testing_default" />
 
 
     <TextView
@@ -19,7 +19,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/large_spacing"
-        android:layout_marginTop="@dimen/large_spacing"
         android:layout_toRightOf="@id/testingListViewItemImageId"
         android:text="Заголовок" />
 
@@ -27,6 +26,7 @@
         android:id="@+id/testingListViewItemLayoutId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:minHeight="@dimen/testing_listview_item_text_min_size"
         android:layout_below="@id/testingListViewItemTitleId"
         android:layout_marginLeft="16dp"
         android:layout_toRightOf="@id/testingListViewItemImageId"
@@ -55,13 +55,13 @@
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/testingListViewItemLayoutId"
+        android:layout_alignLeft="@id/testingListViewItemLayoutId"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_alignStart="@+id/testingListViewItemLayoutId"
-        android:layout_below="@+id/testingListViewItemLayoutId"
+        android:layout_alignStart="@id/testingListViewItemLayoutId"
+        android:layout_below="@id/testingListViewItemLayoutId"
         android:layout_marginTop="@dimen/testing_listview_item_button_spacing"
-        android:text="Продолжить"
+        android:text="Начать"
         android:theme="@style/PrimaryButtonOverlay" />
 
     <ProgressBar
@@ -69,12 +69,12 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="@dimen/progress_border_width"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/testingListViewItemContinueButtonId"
+        android:layout_alignBottom="@id/testingListViewItemContinueButtonId"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="@dimen/medium_spacing"
-        android:layout_toLeftOf="@+id/testingListViewItemLayoutId"
-        android:layout_toStartOf="@+id/testingListViewItemLayoutId"
+        android:layout_toLeftOf="@id/testingListViewItemLayoutId"
+        android:layout_toStartOf="@id/testingListViewItemLayoutId"
         android:indeterminate="false"
         android:max="100"
         android:theme="@style/ProgressBarStyleOverlay" />
@@ -84,8 +84,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@id/testingListViewItemprogressBarId"
-        android:layout_alignEnd="@+id/testingListViewItemprogressBarId"
-        android:layout_alignRight="@+id/testingListViewItemprogressBarId"
+        android:layout_alignEnd="@id/testingListViewItemprogressBarId"
+        android:layout_alignRight="@id/testingListViewItemprogressBarId"
         android:text="Прогресс 50%" />
 
 
