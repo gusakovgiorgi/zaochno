@@ -21,7 +21,7 @@
     <dimen name="listview_divider_height">16dp</dimen>
 
     <!--navigation drawer parameters-->
-    <dimen name="design_navigation_icon_size" tools:override="true">72dp</dimen>
+    <dimen name="navigation_icon_width">72dp</dimen>
     <dimen name="design_navigation_separator_vertical_padding" tools:override="true">0dp</dimen>
     <!--<dimen name="nav_header_vertical_spacing">48dp</dimen>-->
     <dimen name="nav_header_height">250dp</dimen>

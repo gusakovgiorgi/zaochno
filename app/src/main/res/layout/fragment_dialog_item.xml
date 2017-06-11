@@ -40,6 +40,7 @@
         android:paddingRight="@dimen/large_spacing">
 
         <TextView
+            android:id="@+id/dialogFragmentThematicstextViewId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/medium_spacing"
@@ -53,7 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/spinner_height"
             android:background="@color/colorGrey"
-            android:entries="@array/fakeList">
+           >
 
         </Spinner>
 

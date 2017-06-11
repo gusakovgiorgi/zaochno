@@ -1,5 +1,6 @@
 package ru.zaochno.zaochno.database;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -25,7 +26,7 @@ class DatabaseUtils {
         SQLiteDatabase sqLiteDatabase = mDatabaseHelper.getReadableDatabase();
 
         // Define a projection that specifies which columns from the database
-       // you will actually use after this query.
+        // you will actually use after this query.
         String[] projection = {
                 DatabaseContract.CategoryEntry._ID,
                 DatabaseContract.CategoryEntry.COLUMN_NAME_ID,
@@ -33,13 +34,13 @@ class DatabaseUtils {
                 DatabaseContract.CategoryEntry.COLUMN_NAME_PARENT_CATEGORY_NAME_ID
         };
         // Filter results WHERE
-        String selection = DatabaseContract.CategoryEntry.COLUMN_NAME_PARENT_CATEGORY_NAME_ID + " = ?";
-        String[] selectionArgs = { "" };
+        String selection = DatabaseContract.CategoryEntry.COLUMN_NAME_PARENT_CATEGORY_NAME_ID + " IS NULL";
+        String[] selectionArgs = null;
 
-     // How you want the results sorted in the resulting Cursor
-        String sortOrder =null;
+        // How you want the results sorted in the resulting Cursor
+        String sortOrder = null;
 
-        List<Category> categories=new LinkedList<>();
+        List<Category> categories = new LinkedList<>();
         Category category;
 
         Cursor cursor = sqLiteDatabase.query(
@@ -52,14 +53,34 @@ class DatabaseUtils {
                 sortOrder                                                       // The sort order
         );
 
-        while(cursor.moveToNext()){
-            int id=cursor.getInt(cursor.getColumnIndexOrThrow(DatabaseContract.CategoryEntry.COLUMN_NAME_ID));
-            String name=cursor.getString(cursor.getColumnIndexOrThrow(DatabaseContract.CategoryEntry.COLUMN_NAME_NAME));
-            category=new Category(id,name,null);
+        while (cursor.moveToNext()) {
+            int id = cursor.getInt(cursor.getColumnIndexOrThrow(DatabaseContract.CategoryEntry.COLUMN_NAME_ID));
+            String name = cursor.getString(cursor.getColumnIndexOrThrow(DatabaseContract.CategoryEntry.COLUMN_NAME_NAME));
+            category = new Category(id, name, null);
             categories.add(category);
         }
+        cursor.close();
+        mDatabaseHelper.close();
 
         return categories.toArray(new Category[categories.size()]);
+
+    }
+
+    public void saveCategories(Category[] categories) {
+        if (categories == null) return;
+        // Gets the data repository in write mode
+        SQLiteDatabase db = mDatabaseHelper.getWritableDatabase();
+
+        for (int i = 0; i < categories.length; i++) {
+// Create a new map of values, where column names are the keys
+            ContentValues values = new ContentValues();
+            values.put(DatabaseContract.CategoryEntry.COLUMN_NAME_ID, categories[i].getCategoryId());
+            values.put(DatabaseContract.CategoryEntry.COLUMN_NAME_NAME, categories[i].getCategoryName());
+            // Insert the new row, returning the primary key value of the new row
+           /* long newRowId = */
+            db.insert(DatabaseContract.CategoryEntry.TABLE_NAME, null, values);
+        }
+        mDatabaseHelper.close();
 
     }
 }

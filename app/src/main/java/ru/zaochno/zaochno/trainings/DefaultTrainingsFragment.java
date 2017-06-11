@@ -7,15 +7,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListView;
 
 import ru.zaochno.zaochno.FakeData;
-import ru.zaochno.zaochno.MainActivity;
 import ru.zaochno.zaochno.R;
 import ru.zaochno.zaochno.model.Training;
 import ru.zaochno.zaochno.model.TrainingsCategory;
-import ru.zaochno.zaochno.trainings.adapter.TreningsListViewAdapter;
+import ru.zaochno.zaochno.trainings.adapter.TrainingsListViewAdapter;
 
 public class DefaultTrainingsFragment extends Fragment {
 
@@ -23,7 +21,7 @@ public class DefaultTrainingsFragment extends Fragment {
     private static final String ARG_PARAM1 ="param1" ;
     private TrainingsCategory mTrainingCategory;
     private ListView mListview;
-    private TreningsListViewAdapter mAdapter;
+    private TrainingsListViewAdapter mAdapter;
 
     private OnDefaultTrainingsFragmentCallBack mListener;
 
@@ -59,7 +57,7 @@ public class DefaultTrainingsFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mListview=(ListView)view.findViewById(R.id.defaultTreningListViewId);
-        mAdapter=new TreningsListViewAdapter(this);
+        mAdapter=new TrainingsListViewAdapter(this);
 
         if(mTrainingCategory==TrainingsCategory.ALL){
             mAdapter.setData(FakeData.getTrainings());

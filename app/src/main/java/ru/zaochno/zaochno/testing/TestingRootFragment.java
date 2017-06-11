@@ -76,12 +76,18 @@ public class TestingRootFragment extends Fragment {
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
         List<Test> testList=FakeData.getTrainings().get(0).getTests();
-        Test[] tests=new Test[testList.size()];
-        for(int i=0;i<testList.size();i++){
-            tests[i]=testList.get(i);
+        List<Test> scurrentTest=new ArrayList<>();
+        List<Test> proidennieTest=new ArrayList<>();
+        for(Test test:testList){
+            if(test.getTestProgress()==0){
+                scurrentTest.add(test);
+            }else{
+                proidennieTest.add(test);
+            }
         }
-        adapter.addFragment(TestingDetailsFragment.newInstance(tests), "Текущее тестирование");
-        adapter.addFragment(TestingDetailsFragment.newInstance(new Test[0]), "Пройденные тесты");
+
+        adapter.addFragment(TestingDetailsFragment.newInstance(scurrentTest.toArray(new Test[scurrentTest.size()])), "Текущее тестирование");
+        adapter.addFragment(TestingDetailsFragment.newInstance(proidennieTest.toArray(new Test[proidennieTest.size()])), "Пройденные тесты");
         viewPager.setAdapter(adapter);
     }
 

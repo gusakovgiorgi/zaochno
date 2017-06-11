@@ -12,29 +12,22 @@
     tools:context="ru.zaochno.zaochno.LoginActivity">
 
     <!-- Login progress -->
-    <ProgressBar
-        android:id="@+id/registrationExtendedFragmentLoginProgressId"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:visibility="gone" />
-
     <ScrollView
         android:id="@+id/extendedRegistrationFragmentLoginFormId"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:id="@+id/email_login_form"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="60dp"
-        android:src="@drawable/logo_transparent"
-        android:layout_marginBottom="16dp"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="80dp"
+                android:layout_marginBottom="16dp"
+                android:src="@drawable/logo_transparent" />
 
 
             <android.support.design.widget.TextInputLayout
@@ -78,18 +71,34 @@
                 android:layout_marginTop="16dp"
                 android:background="@color/colorAccent"
                 android:text="@string/action_sign_in"
+                android:textColor="@color/colorWhite"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/extendedRegistrationFragmentGenDirectorName"
-                android:layout_marginTop="16dp"
-                android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/large_spacing"
+                android:text="forgot password?"
                 android:textColor="@color/colorBlack"
-                android:text="forgot password?"/>
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/social_icons"
+                android:layout_marginTop="@dimen/large_spacing"/>
 
         </LinearLayout>
     </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/registrationExtendedFragmentLoginProgressId"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:visibility="gone" />
+
 </LinearLayout>

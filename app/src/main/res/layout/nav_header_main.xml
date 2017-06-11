@@ -26,7 +26,7 @@
         android:src="@drawable/default_profile"
         app:civ_shadow="true"
         app:civ_shadow_radius="10"
-        app:civ_shadow_color="@color/light_gray"
+        app:civ_shadow_color="@color/colorBlack"
         app:civ_border_width="@dimen/profile_border_width"
         app:civ_border_color="@color/colorWhite"/>
 

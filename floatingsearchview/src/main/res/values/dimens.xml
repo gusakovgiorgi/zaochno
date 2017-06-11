@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <dimen name="search_bar_height">48dp</dimen>
     <dimen name="search_bar_left_icon_left_margin">4dp</dimen>
     <dimen name="search_bar_right_icon_right_margin">4dp</dimen>
@@ -15,4 +15,6 @@
 
     <dimen name="suggestion_body_text_size">18sp</dimen>
     <dimen name="search_bar_text_size">16sp</dimen>
+    <!--navigation drawer parameters-->
+    <dimen name="design_navigation_icon_size" tools:override="true">48dp</dimen>
 </resources>

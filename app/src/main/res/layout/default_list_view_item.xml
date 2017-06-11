@@ -9,18 +9,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="@dimen/default_training_image_width"
         android:layout_height="wrap_content"
-        android:src="@drawable/training_default_image"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="@dimen/medium_spacing"
         android:layout_marginLeft="@dimen/medium_spacing"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:id="@+id/detailsListViewItemImageViewId"
+        android:id="@+id/detailsListViewItemImageLayoutId"
         android:layout_marginBottom="@dimen/medium_spacing"
         app:layout_constraintBottom_toTopOf="@+id/guideline"
-        android:layout_marginStart="@dimen/medium_spacing" />
+        android:layout_marginStart="@dimen/medium_spacing" >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorRed"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:text="500 руб"/>
+        <ImageView
+            android:id="@+id/detailsListViewItemImageViewId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/training_default_image"/>
+    </LinearLayout>
 
     <TextView
         style="@style/HeaderTextStyle"
@@ -30,7 +44,7 @@
         android:text="TextView"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="@dimen/medium_spacing"
-        app:layout_constraintLeft_toRightOf="@+id/detailsListViewItemImageViewId"
+        app:layout_constraintLeft_toRightOf="@id/detailsListViewItemImageLayoutId"
         android:layout_marginLeft="@dimen/medium_spacing"
         android:layout_marginRight="@dimen/medium_spacing"
         app:layout_constraintRight_toRightOf="parent"
@@ -45,7 +59,7 @@
         android:text="orem Ipsum - это текст-, часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной  для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн. Его популяризации в новое время послужили публикация листов Letraset"
         android:layout_marginTop="@dimen/medium_spacing"
         app:layout_constraintTop_toBottomOf="@+id/detailsListViewItemTitleId"
-        app:layout_constraintLeft_toRightOf="@+id/detailsListViewItemImageViewId"
+        app:layout_constraintLeft_toRightOf="@+id/detailsListViewItemImageLayoutId"
         android:layout_marginLeft="@dimen/medium_spacing"
         android:layout_marginRight="@dimen/medium_spacing"
         app:layout_constraintRight_toRightOf="parent"

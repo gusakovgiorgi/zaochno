@@ -9,6 +9,10 @@
         <item name="android:colorBackground">@color/background</item>
     </style>
 
+    <style name="AppTheme.Launcher">
+        <item name="android:windowBackground">@drawable/start_picture</item>
+    </style>
+
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
@@ -48,9 +52,9 @@
         <item name="colorAccent">@color/colorPrimary</item>
     </style>
 
-    <style name="NavMenuTheme" parent="AppTheme">
-        <item name="android:listPreferredItemHeightSmall">@dimen/list_preferred_item_height_small</item>
-    </style>
+    <!--<style name="NavMenuTheme" parent="AppTheme">-->
+        <!--<item name="android:listPreferredItemHeightSmall">@dimen/list_preferred_item_height_small</item>-->
+    <!--</style>-->
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="elevation">0dp</item>

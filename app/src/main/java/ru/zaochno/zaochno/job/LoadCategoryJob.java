@@ -10,6 +10,7 @@ import com.birbit.android.jobqueue.RetryConstraint;
 
 import retrofit2.Response;
 import ru.zaochno.zaochno.MainApplication;
+import ru.zaochno.zaochno.database.DatabaseManager;
 import ru.zaochno.zaochno.model.Category;
 import ru.zaochno.zaochno.model.user.UserManager;
 import ru.zaochno.zaochno.rest.category.CategoryAPI;
@@ -39,6 +40,7 @@ public class LoadCategoryJob extends Job {
         categoryAPI=MainApplication.getInstance().getRetrofit().create(CategoryAPI.class);
         if(UserManager.getInstance().getUser()!=null) {
             Response<CategoryGetData> response = categoryAPI.getThematics(new CategorySendData(UserManager.getInstance().getUser().getUserToken())).execute();
+            DatabaseManager.getInstance().saveCategories(response.body().getCategories());
         }
     }
 

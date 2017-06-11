@@ -1,5 +1,8 @@
 package ru.zaochno.zaochno.database;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -30,17 +33,41 @@ public class DatabaseManager {
         executorService.submit(new LoadCategories(callBack));
     }
 
+    public void saveCategories(Category[] categories){
+        executorService.submit(new SaveCategories(categories));
+    }
+
 
     class LoadCategories implements Runnable{
-        DatabaseCallBack<Category[]> callBack;
+        private DatabaseCallBack<Category[]> callBack;
         LoadCategories(DatabaseCallBack<Category[]> callBack){
             this.callBack=callBack;
         }
         @Override
         public void run() {
-            Category[] categories=mDatabaseUtils.getCategories();
+            final Category[] categories=mDatabaseUtils.getCategories();
             if(callBack!=null) {
                 callBack.returnData(categories);
+            }
+        }
+    }
+    class SaveCategories implements Runnable{
+        private Category[] categories;
+
+        SaveCategories(Category[] categories){
+            this.categories=categories;
+        }
+        @Override
+        public void run() {
+            Category[] cachedCategories=mDatabaseUtils.getCategories();
+            Set<Category> cachedCategoriesSet=new HashSet<>(Arrays.asList(cachedCategories));
+            Set<Category> newCategoriesSet=new HashSet<>(Arrays.asList(categories));
+            Set<Category> addSet=new HashSet<>();
+            addSet.addAll(newCategoriesSet);
+//            int newCategoriesSetSize=addSet.size();
+            addSet.removeAll(cachedCategoriesSet);
+            if(addSet.size()>0){
+                mDatabaseUtils.saveCategories(addSet.toArray(new Category[addSet.size()]));
             }
         }
     }

@@ -5,7 +5,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -22,20 +21,20 @@ import ru.zaochno.zaochno.trainings.DefaultTrainingsFragment;
  * Created by notbl on 5/21/2017.
  */
 
-public class TreningsListViewAdapter extends BaseAdapter{
+public class TrainingsListViewAdapter extends BaseAdapter{
 
 
     private List<Training> data;
     private LayoutInflater mInflater;
     private DefaultTrainingsFragment mDefaultTreningsFragment;
 
-    public TreningsListViewAdapter(Fragment fragment, List<Training> data){
+    public TrainingsListViewAdapter(Fragment fragment, List<Training> data){
         this.data=data;
         mInflater = (LayoutInflater) fragment.getContext()
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mDefaultTreningsFragment=(DefaultTrainingsFragment)fragment;
     }
-    public TreningsListViewAdapter(Fragment fragment){
+    public TrainingsListViewAdapter(Fragment fragment){
         this(fragment,new ArrayList<Training>());
     }
 

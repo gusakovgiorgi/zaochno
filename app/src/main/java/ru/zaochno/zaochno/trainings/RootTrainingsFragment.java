@@ -4,23 +4,20 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import ru.zaochno.zaochno.MainActivity;
 import ru.zaochno.zaochno.R;
-import ru.zaochno.zaochno.dialogs.FilterDialogFragment;
+import ru.zaochno.zaochno.drawer.DrawerItemType;
 import ru.zaochno.zaochno.model.TrainingsCategory;
 
 
@@ -33,21 +30,21 @@ public class RootTrainingsFragment extends Fragment {
     private TabLayout mTabLayout;
 
     private static final String ARG_PARAM1 = "menu_item_param";
-    private int menuId;
+    private DrawerItemType type;
 
     private OnRootTrainingsFragmentCallback mListener;
 
     public RootTrainingsFragment() {
-        menuId=R.id.navTreningId;
+        type =DrawerItemType.DEFAULT_TRAINING;
         // Required empty public constructor
     }
 
 
     // TODO: Rename and change types and number of parameters
-    public static RootTrainingsFragment newInstance(int menuId) {
+    public static RootTrainingsFragment newInstance(DrawerItemType type) {
        RootTrainingsFragment fragment = new RootTrainingsFragment();
         Bundle args = new Bundle();
-        args.putInt(ARG_PARAM1, menuId);
+        args.putSerializable(ARG_PARAM1, type);
         fragment.setArguments(args);
         return fragment;
     }
@@ -56,7 +53,7 @@ public class RootTrainingsFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            menuId = getArguments().getInt(ARG_PARAM1);
+            type = (DrawerItemType) getArguments().getSerializable(ARG_PARAM1);
         }
     }
 
@@ -77,8 +74,8 @@ public class RootTrainingsFragment extends Fragment {
 
         mTabLayout = (TabLayout) view.findViewById(R.id.treningTabLayoutId);
         mTabLayout.setupWithViewPager(mViewPager);
-        switch (menuId){
-            case R.id.navFavoriteId:
+        switch (type){
+            case FAVORITE_TRAINING:
                 mViewPager.setCurrentItem(1);
         }
 

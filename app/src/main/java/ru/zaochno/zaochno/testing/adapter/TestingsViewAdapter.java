@@ -76,6 +76,10 @@ public class TestingsViewAdapter extends BaseAdapter {
             holder= (ViewHolder) convertView.getTag();
         }
 
+        if(mTestList.get(position).getTestProgress()>0){
+            holder.progressBar.setVisibility(View.VISIBLE);
+            holder.progressTextView.setVisibility(View.VISIBLE);
+        }
         holder.title.setText(mTestList.get(position).getTestName());
         holder.shortDescription.setText(mTestList.get(position).getShortDescription());
         holder.expire.setText(mTestList.get(position).getExpireDate().toString());
