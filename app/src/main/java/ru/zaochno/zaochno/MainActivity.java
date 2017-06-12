@@ -3,6 +3,8 @@ package ru.zaochno.zaochno;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
@@ -14,6 +16,8 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.DragEvent;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -49,7 +53,7 @@ import ru.zaochno.zaochno.trainings.ProgressTrainingsFragment;
 import ru.zaochno.zaochno.trainings.RootTrainingsFragment;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, DefaultTrainingsFragment.OnDefaultTrainingsFragmentCallBack,
+        implements DefaultTrainingsFragment.OnDefaultTrainingsFragmentCallBack,
         DetailsTrainingFragment.OnDetailsTrainingsFragmentCallback, ProgressTrainingsFragment.OnProgressTrainingsFragmentCallback,
         TestingDetailsFragment.OnTestingDetailsFragmentCallBack, RootTrainingsFragment.OnRootTrainingsFragmentCallback {
 
@@ -87,9 +91,16 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         bottomLayoutView = findViewById(R.id.bottomLayoutId);
+
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close){
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                super.onDrawerClosed(drawerView);
+
+            }
+        };
+        drawer.addDrawerListener(toggle);
         toggle.syncState();
 
 
@@ -127,32 +138,18 @@ public class MainActivity extends AppCompatActivity
         adapter=new DrawerListvViewAdapter();
         adapter.setData(items);
         mDrawerListView.setAdapter(adapter);
-//        mDrawerListView.setOnItemClickListener(new DrawerItemClickListener());
-        mDrawerListView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            View previousView;
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (previousView!=null){
-                    previousView.setBackgroundResource(R.color.background);
-                }
-                previousView=view;
-                view.setBackgroundResource(R.color.colorGrey);
-                selectItem(DrawerItemType.values()[position]);
-            }
+        mDrawerListView.setOnItemClickListener(new DrawerItemClickListener());
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
     }
 
     private void selectItem(DrawerItemType type){
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        final FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         int possition=0;
         switch (type){
             case DEFAULT_TRAINING:
                 possition=0;
+                transaction.replace(R.id.mainFrameId, RootTrainingsFragment.newInstance(DrawerItemType.DEFAULT_TRAINING));
+                break;
             case FAVORITE_TRAINING:
                 possition=1;
                 transaction.replace(R.id.mainFrameId, RootTrainingsFragment.newInstance(DrawerItemType.FAVORITE_TRAINING));
@@ -175,12 +172,14 @@ public class MainActivity extends AppCompatActivity
                 possition=5;
                 startLoginActivity();
         }
+
+
         transaction.commit();
-        mDrawerListView.setItemChecked(possition, true);
-//        mDrawerListView.getOnItemClickListener().onItemClick(null,(View)adapter.getItem(possition),possition,0);
-//        mDrawerListView.getOnItemClickListener().onItemClick(null,mDrawerListView.getSelectedView(),possition,0);
-        setTitle(items.get(possition).getTitle());
+        getSupportFragmentManager().executePendingTransactions();
+
         drawer.closeDrawers();
+        mDrawerListView.setItemChecked(possition, true);
+
     }
     private void setupBottomLayout() {
         filterImageButton.setOnClickListener(new View.OnClickListener() {
@@ -204,6 +203,7 @@ public class MainActivity extends AppCompatActivity
         });
     }
 
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -214,59 +214,6 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-//        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-//        switch (item.getItemId()) {
-//            case R.id.navTreningId:
-//            case R.id.navFavoriteId:
-////                enableToolBarScrolling();
-//                transaction.replace(R.id.mainFrameId, RootTrainingsFragment.newInstance(item.getItemId()));
-//                break;
-//            case R.id.navTestID:
-////                enableToolBarScrolling();
-//                transaction.replace(R.id.mainFrameId, TestingRootFragment.newInstance());
-//                break;
-//            case R.id.navSettingsId:
-////                disableToolBarScrolling();
-////                setEnableButtomLayout(false);
-//                transaction.replace(R.id.mainFrameId, UserProfileFragment.newInstance());
-//                break;
-//            case R.id.navMessageId:
-////                disableToolBarScrolling();
-////                params.setScrollFlags(AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL
-////                        | AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS);
-////                setEnableButtomLayout(false);
-//                transaction.replace(R.id.mainFrameId, MessagesFragment.newInstance());
-//                break;
-//            case R.id.navExitId:
-//                startLoginActivity();
-//
-//        }
-//        transaction.commit();
-
-
-//        if (id == R.id.nav_camera) {
-//            // Handle the camera action
-//        } else if (id == R.id.nav_gallery) {
-//
-//        } else if (id == R.id.nav_slideshow) {
-//
-//        } else if (id == R.id.nav_manage) {
-//
-//        } else if (id == R.id.nav_share) {
-//
-//        } else if (id == R.id.nav_send) {
-//
-//        }
-
-//        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-//        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
 
     public static void disableToolBarScrolling() {
         if (toolbar == null) {
@@ -308,16 +255,39 @@ public class MainActivity extends AppCompatActivity
         bottomLayoutView.setVisibility(enable ? View.VISIBLE : View.GONE);
     }
 
+
     private class DrawerItemClickListener implements AdapterView.OnItemClickListener{
         private View previousView;
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            if (previousView!=null){
-                previousView.setBackgroundResource(R.color.background);
-            }
-            previousView=view;
-            view.setBackgroundResource(R.color.colorGrey);
+//            if (previousView!=null){
+//                previousView.setBackgroundResource(R.color.background);
+//            }
+//            previousView=view;
+//            view.setBackgroundResource(R.color.colorGrey);
             selectItem(DrawerItemType.values()[position]);
+        }
+    }
+
+    private class DrawerClosedListener implements DrawerLayout.DrawerListener{
+        @Override
+        public void onDrawerSlide(View drawerView, float slideOffset) {
+
+        }
+
+        @Override
+        public void onDrawerOpened(View drawerView) {
+
+        }
+
+        @Override
+        public void onDrawerClosed(View drawerView) {
+
+        }
+
+        @Override
+        public void onDrawerStateChanged(int newState) {
+
         }
     }
 
@@ -384,9 +354,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void RootTrainingsFragmentChangeDrawerPosition(int itemNumber) {
-//        mNavigationView.getMenu().getItem(itemNumber).setChecked(true);
         mDrawerListView.setItemChecked(itemNumber, true);
-        setTitle(items.get(itemNumber).getTitle());
     }
 
 }

@@ -96,11 +96,6 @@ public class FilterDialogFragment extends DialogFragment {
                 for (int i = 0; i < data.length; i++) {
                     names[i] = data[i].getCategoryName();
                 }
-                try {
-                    Thread.sleep(3000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
                 final ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, names);
                 mSpinner.post(new Runnable() {
                     @Override
