@@ -8,17 +8,30 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import ru.zaochno.zaochno.MainActivity;
+import ru.zaochno.zaochno.MainApplication;
 import ru.zaochno.zaochno.R;
+import ru.zaochno.zaochno.database.DatabaseManager;
 import ru.zaochno.zaochno.drawer.DrawerItemType;
-import ru.zaochno.zaochno.model.TrainingsCategory;
+import ru.zaochno.zaochno.model.TrainingsType;
+import ru.zaochno.zaochno.model.user.UserManager;
+import ru.zaochno.zaochno.rest.category.CategoryGetData;
+import ru.zaochno.zaochno.rest.category.CategorySendData;
+import ru.zaochno.zaochno.rest.training.TrainingAPI;
+import ru.zaochno.zaochno.rest.training.TrainingsGetData;
+import ru.zaochno.zaochno.rest.training.TrainingsSendData;
 
 
 /**
@@ -29,20 +42,22 @@ public class RootTrainingsFragment extends Fragment {
     private ViewPager mViewPager;
     private TabLayout mTabLayout;
 
+    public TrainingAPI trainingAPI;
+
     private static final String ARG_PARAM1 = "menu_item_param";
     private DrawerItemType type;
 
     private OnRootTrainingsFragmentCallback mListener;
 
     public RootTrainingsFragment() {
-        type =DrawerItemType.DEFAULT_TRAINING;
+        type = DrawerItemType.DEFAULT_TRAINING;
         // Required empty public constructor
     }
 
 
     // TODO: Rename and change types and number of parameters
     public static RootTrainingsFragment newInstance(DrawerItemType type) {
-       RootTrainingsFragment fragment = new RootTrainingsFragment();
+        RootTrainingsFragment fragment = new RootTrainingsFragment();
         Bundle args = new Bundle();
         args.putSerializable(ARG_PARAM1, type);
         fragment.setArguments(args);
@@ -74,33 +89,31 @@ public class RootTrainingsFragment extends Fragment {
 
         mTabLayout = (TabLayout) view.findViewById(R.id.treningTabLayoutId);
         mTabLayout.setupWithViewPager(mViewPager);
-        switch (type){
+        switch (type) {
             case FAVORITE_TRAINING:
                 mViewPager.setCurrentItem(1);
         }
 
-//        ImageButton imageButton=(ImageButton)view.findViewById(R.id.rootTrainingsFragmentSettinsImageButtonId);
-//        imageButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // DialogFragment.show() will take care of adding the fragment
-//                // in a transaction.  We also want to remove any currently showing
-//                // dialog, so make our own transaction and take care of that here.
-//                FragmentTransaction ft = getChildFragmentManager().beginTransaction();
-//                Fragment prev = getChildFragmentManager().findFragmentByTag("dialog");
-//                if (prev != null) {
-//                    ft.remove(prev);
-//                }
-//                ft.addToBackStack(null);
-//
-//                // Create and show the dialog.
-//                DialogFragment newFragment = FilterDialogFragment.newInstance();
-//                newFragment.show(ft, "dialog");
-//
-//            }
-//        });
+        trainingAPI = MainApplication.getInstance().getRetrofit().create(TrainingAPI.class);
+        TrainingsSendData data = new TrainingsSendData();
+        data.setLimit(100);
+        data.setPriceStart(0);
+        data.setPriceEnd(50000);
+        data.setThematics("");
+        data.setToken(UserManager.getInstance().getUser().getUserToken());
 
+        trainingAPI.getTrainings(data).enqueue(new Callback<TrainingsGetData>() {
+            @Override
+            public void onResponse(Call<TrainingsGetData> call, Response<TrainingsGetData> response) {
+                Log.v("test",response.body().toString());
+                DatabaseManager.getInstance().saveTrainings(response.body().getTrainings());
+            }
 
+            @Override
+            public void onFailure(Call<TrainingsGetData> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
 
     }
 
@@ -124,9 +137,9 @@ public class RootTrainingsFragment extends Fragment {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
-        adapter.addFragment(DefaultTrainingsFragment.newInstance(TrainingsCategory.ALL), "Тренинги");
-        adapter.addFragment(DefaultTrainingsFragment.newInstance(TrainingsCategory.FAVORITES), "Избранное");
-        adapter.addFragment(DefaultTrainingsFragment.newInstance(TrainingsCategory.BOUGHT), "Купленное");
+        adapter.addFragment(DefaultTrainingsFragment.newInstance(TrainingsType.ALL), "Тренинги");
+        adapter.addFragment(DefaultTrainingsFragment.newInstance(TrainingsType.FAVORITES), "Избранное");
+        adapter.addFragment(DefaultTrainingsFragment.newInstance(TrainingsType.BOUGHT), "Купленное");
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -137,7 +150,7 @@ public class RootTrainingsFragment extends Fragment {
             @Override
             public void onPageSelected(int position) {
                 //0- is trenings and 1 - favorites it is corresponf to nav drawer items
-                if(position==0||position==1){
+                if (position == 0 || position == 1) {
                     setNavigarionDrawerItemTo(position);
                 }
             }
@@ -182,11 +195,10 @@ public class RootTrainingsFragment extends Fragment {
     }
 
     private void setNavigarionDrawerItemTo(int itemNumber) {
-        if(mListener!=null){
+        if (mListener != null) {
             mListener.RootTrainingsFragmentChangeDrawerPosition(itemNumber);
         }
     }
-
 
 
     public interface OnRootTrainingsFragmentCallback {

@@ -11,15 +11,19 @@ import android.widget.ListView;
 
 import ru.zaochno.zaochno.FakeData;
 import ru.zaochno.zaochno.R;
+import ru.zaochno.zaochno.database.DatabaseCallBack;
+import ru.zaochno.zaochno.database.DatabaseManager;
+import ru.zaochno.zaochno.model.Category;
 import ru.zaochno.zaochno.model.Training;
-import ru.zaochno.zaochno.model.TrainingsCategory;
+import ru.zaochno.zaochno.model.TrainingUtils;
+import ru.zaochno.zaochno.model.TrainingsType;
 import ru.zaochno.zaochno.trainings.adapter.TrainingsListViewAdapter;
 
 public class DefaultTrainingsFragment extends Fragment {
 
 
     private static final String ARG_PARAM1 ="param1" ;
-    private TrainingsCategory mTrainingCategory;
+    private TrainingsType mTrainingCategory;
     private ListView mListview;
     private TrainingsListViewAdapter mAdapter;
 
@@ -30,7 +34,7 @@ public class DefaultTrainingsFragment extends Fragment {
     }
 
 
-    public static DefaultTrainingsFragment newInstance(TrainingsCategory category) {
+    public static DefaultTrainingsFragment newInstance(TrainingsType category) {
         DefaultTrainingsFragment fragment = new DefaultTrainingsFragment();
         Bundle args = new Bundle();
         args.putSerializable(ARG_PARAM1, category);
@@ -42,7 +46,7 @@ public class DefaultTrainingsFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mTrainingCategory = (TrainingsCategory) getArguments().getSerializable(ARG_PARAM1);
+            mTrainingCategory = (TrainingsType) getArguments().getSerializable(ARG_PARAM1);
         }
     }
 
@@ -59,15 +63,24 @@ public class DefaultTrainingsFragment extends Fragment {
         mListview=(ListView)view.findViewById(R.id.defaultTreningListViewId);
         mAdapter=new TrainingsListViewAdapter(this);
 
-        if(mTrainingCategory==TrainingsCategory.ALL){
-            mAdapter.setData(FakeData.getTrainings());
-        }else if(mTrainingCategory==TrainingsCategory.FAVORITES){
-            mAdapter.setData(FakeData.getFavoritesTraining());
-        }else if(mTrainingCategory==TrainingsCategory.BOUGHT){
-            mAdapter.setData(FakeData.getBoughtTraining());
-        }
+        DatabaseManager.getInstance().getTrainings(new DatabaseCallBack<Training[]>() {
+            @Override
+            public void returnData(Training[] data) {
+                if(mTrainingCategory== TrainingsType.ALL){
+                    mAdapter.setData(data);
+                }else if(mTrainingCategory== TrainingsType.FAVORITES){
+                    mAdapter.setData(TrainingUtils.getFavoriteTraining(data));
+                }else if(mTrainingCategory== TrainingsType.BOUGHT){
+                    mAdapter.setData(TrainingUtils.getBoughtTraining(data));
+                }
 
-        mListview.setAdapter(mAdapter);
+                mListview.setAdapter(mAdapter);
+            }
+        });
+
+
+
+
     }
 
 

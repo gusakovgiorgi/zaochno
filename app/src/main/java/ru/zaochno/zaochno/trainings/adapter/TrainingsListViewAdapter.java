@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import ru.zaochno.zaochno.R;
@@ -42,6 +43,11 @@ public class TrainingsListViewAdapter extends BaseAdapter{
         this.data=data;
         notifyDataSetChanged();
     }
+    public void setData(Training[] data){
+        this.data=Arrays.asList(data);
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getCount() {
         return data.size();

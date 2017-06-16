@@ -5,12 +5,13 @@ import com.google.gson.annotations.SerializedName;
 import java.util.Arrays;
 
 import ru.zaochno.zaochno.model.Category;
+import ru.zaochno.zaochno.rest.BaseResponce;
 
 /**
  * Created by Anton_MoApps on 08.06.2017.
  */
 
-public class CategoryGetData {
+public class CategoryGetData  extends BaseResponce{
     @SerializedName("data")
     private Category[] categories;
 

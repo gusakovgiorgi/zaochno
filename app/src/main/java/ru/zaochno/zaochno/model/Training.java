@@ -3,6 +3,8 @@ package ru.zaochno.zaochno.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 import ru.zaochno.zaochno.model.testing.Test;
@@ -12,11 +14,17 @@ import ru.zaochno.zaochno.model.testing.Test;
  */
 
 public class Training implements Parcelable{
+    @SerializedName("trainingId")
     private int id;
+    @SerializedName("treningName")
     private String title;
+    @SerializedName("treningShortText")
     private String description;
+    @SerializedName("trenningIcoUrl")
     private String imageUrl;
+    @SerializedName("isPayment")
     private boolean isBought;
+    @SerializedName("treningFavorite")
     private boolean isFavorite;
     private Category category;
     private List<Chapter> chapters;
@@ -152,4 +160,35 @@ public class Training implements Parcelable{
         dest.writeTypedList(tests);
     }
 
+    @Override
+    public String toString() {
+        return "Training{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", isBought=" + isBought +
+                ", isFavorite=" + isFavorite +
+                ", category=" + category +
+                ", chapters=" + chapters +
+                ", price='" + price + '\'' +
+                ", tests=" + tests +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Training training = (Training) o;
+
+        return id == training.id;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return id;
+    }
 }
