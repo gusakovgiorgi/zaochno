@@ -2,6 +2,8 @@ package ru.zaochno.zaochno.database;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -20,6 +22,9 @@ public class DatabaseManager {
     private DatabaseUtils mDatabaseUtils;
     private ExecutorService executorService;
     private Training[] trainings;
+    private  boolean loadFromInternet;
+    private List<DatabaseCallBack<Training[]>> mWaitingCallbacks=new LinkedList<>();
+
 
     private DatabaseManager() {
         executorService = Executors.newFixedThreadPool(1);
@@ -28,6 +33,19 @@ public class DatabaseManager {
 
     public static DatabaseManager getInstance() {
         return INSTANCE;
+    }
+
+    public void startLoadingFromInternet(){
+        loadFromInternet=true;
+    }
+    public boolean isLoadingFromInternet(){
+        return loadFromInternet;
+    }
+    public synchronized void stopLoadingFromInternet(){
+        loadFromInternet=false;
+        if(mWaitingCallbacks.size()>0){
+            executorService.submit(new LoadTrainings(mWaitingCallbacks));
+        }
     }
 
     public void getCategories(DatabaseCallBack<Category[]> callBack) {
@@ -44,13 +62,19 @@ public class DatabaseManager {
     }
 
     public void getTrainings(DatabaseCallBack<Training[]> callBack){
-        if(this.trainings!=null){
+        if(isLoadingFromInternet()){
+            waitingUntilLoadEnd(callBack);
+        }else if(this.trainings!=null){
             if(callBack!=null){
                 callBack.returnData(this.trainings);
             }
         }else {
             executorService.submit(new LoadTrainings(callBack));
         }
+    }
+
+    private synchronized void waitingUntilLoadEnd(DatabaseCallBack<Training[]> callBack) {
+        mWaitingCallbacks.add(callBack);
     }
 
 
@@ -94,9 +118,13 @@ public class DatabaseManager {
 
     class LoadTrainings implements Runnable {
         private DatabaseCallBack<Training[]> callBack;
+        private List<DatabaseCallBack<Training[]>> waitingCallBacks;
 
         LoadTrainings(DatabaseCallBack<Training[]> callBack) {
             this.callBack = callBack;
+        }
+        LoadTrainings(List<DatabaseCallBack<Training[]>> waitingCallBacks) {
+            this.waitingCallBacks = waitingCallBacks;
         }
 
         @Override
@@ -104,6 +132,12 @@ public class DatabaseManager {
             final Training[] trainings = mDatabaseUtils.getTrainings();
             if (callBack != null) {
                 callBack.returnData(trainings);
+            }
+            if(this.waitingCallBacks!=null && this.waitingCallBacks.size()>0){
+                for(DatabaseCallBack<Training[]> callBack : this.waitingCallBacks){
+                    callBack.returnData(trainings);
+                }
+                waitingCallBacks.clear();
             }
         }
     }
@@ -128,6 +162,7 @@ public class DatabaseManager {
             if(addSet.size()>0) {
                 mDatabaseUtils.saveTrainings(trainings);
             }
+            stopLoadingFromInternet();
         }
     }
 }

@@ -9,11 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import ru.zaochno.zaochno.FakeData;
 import ru.zaochno.zaochno.R;
 import ru.zaochno.zaochno.database.DatabaseCallBack;
 import ru.zaochno.zaochno.database.DatabaseManager;
-import ru.zaochno.zaochno.model.Category;
 import ru.zaochno.zaochno.model.Training;
 import ru.zaochno.zaochno.model.TrainingUtils;
 import ru.zaochno.zaochno.model.TrainingsType;
@@ -26,6 +24,7 @@ public class DefaultTrainingsFragment extends Fragment {
     private TrainingsType mTrainingCategory;
     private ListView mListview;
     private TrainingsListViewAdapter mAdapter;
+
 
     private OnDefaultTrainingsFragmentCallBack mListener;
 
@@ -63,24 +62,30 @@ public class DefaultTrainingsFragment extends Fragment {
         mListview=(ListView)view.findViewById(R.id.defaultTreningListViewId);
         mAdapter=new TrainingsListViewAdapter(this);
 
+        loadData();
+
+    }
+
+    public void loadData() {
         DatabaseManager.getInstance().getTrainings(new DatabaseCallBack<Training[]>() {
             @Override
-            public void returnData(Training[] data) {
-                if(mTrainingCategory== TrainingsType.ALL){
-                    mAdapter.setData(data);
-                }else if(mTrainingCategory== TrainingsType.FAVORITES){
-                    mAdapter.setData(TrainingUtils.getFavoriteTraining(data));
-                }else if(mTrainingCategory== TrainingsType.BOUGHT){
-                    mAdapter.setData(TrainingUtils.getBoughtTraining(data));
-                }
+            public void returnData(final Training[] data) {
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
 
-                mListview.setAdapter(mAdapter);
+                        if(mTrainingCategory== TrainingsType.ALL){
+                            mAdapter.setData(data);
+                        }else if(mTrainingCategory== TrainingsType.FAVORITES){
+                            mAdapter.setData(TrainingUtils.getFavoriteTraining(data));
+                        }else if(mTrainingCategory== TrainingsType.BOUGHT){
+                            mAdapter.setData(TrainingUtils.getBoughtTraining(data));
+                        }
+                        mListview.setAdapter(mAdapter);
+                    }
+                });
             }
         });
-
-
-
-
     }
 
 

@@ -11,6 +11,10 @@ import com.birbit.android.jobqueue.log.CustomLogger;
 import com.birbit.android.jobqueue.scheduling.FrameworkJobSchedulerService;
 import com.birbit.android.jobqueue.scheduling.GcmJobSchedulerService;
 
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import ru.zaochno.zaochno.model.user.UserManager;
@@ -34,9 +38,22 @@ public class MainApplication extends Application {
         super.onCreate();
         UserManager.getInstance().initializeUser();
 
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        // set your desired log level
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+        OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
+        // add your other interceptors …
+
+        httpClient.readTimeout(60, TimeUnit.SECONDS).connectTimeout(30,TimeUnit.SECONDS);
+
+        // add logging as last interceptor
+        httpClient.addInterceptor(logging);  // <-- this is the important line!
+
         retrofit=new Retrofit.Builder()
                 .baseUrl("http://trainingsonl-ru.1gb.ru")
                 .addConverterFactory(GsonConverterFactory.create())
+                .client(httpClient.build())
                 .build();
         getJobManager();
     }
@@ -52,22 +69,22 @@ public class MainApplication extends Application {
                     private static final String TAG = "JOBS";
                     @Override
                     public boolean isDebugEnabled() {
-                        return true;
+                        return false;
                     }
 
                     @Override
                     public void d(String text, Object... args) {
-                        Log.d(TAG, String.format(text, args));
+//                        Log.d(TAG, String.format(text, args));
                     }
 
                     @Override
                     public void e(Throwable t, String text, Object... args) {
-                        Log.e(TAG, String.format(text, args), t);
+//                        Log.e(TAG, String.format(text, args), t);
                     }
 
                     @Override
                     public void e(String text, Object... args) {
-                        Log.e(TAG, String.format(text, args));
+//                        Log.e(TAG, String.format(text, args));
                     }
 
                     @Override

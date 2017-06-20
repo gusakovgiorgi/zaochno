@@ -5,6 +5,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="ru.zaochno.zaochno.trainings.DefaultTrainingsFragment">
 
+
+
    <ListView
        android:nestedScrollingEnabled="true"
        android:id="@+id/defaultTreningListViewId"
@@ -15,5 +17,6 @@
        android:dividerHeight="@dimen/listview_divider_height"
        app:layout_behavior="@string/appbar_scrolling_view_behavior"
        />
+
 
 </FrameLayout>

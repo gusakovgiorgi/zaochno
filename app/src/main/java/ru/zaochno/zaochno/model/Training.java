@@ -14,7 +14,7 @@ import ru.zaochno.zaochno.model.testing.Test;
  */
 
 public class Training implements Parcelable{
-    @SerializedName("trainingId")
+    @SerializedName("trenningId")
     private int id;
     @SerializedName("treningName")
     private String title;

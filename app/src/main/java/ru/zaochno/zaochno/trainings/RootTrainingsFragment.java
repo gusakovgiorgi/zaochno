@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,8 +42,9 @@ public class RootTrainingsFragment extends Fragment {
 
     private ViewPager mViewPager;
     private TabLayout mTabLayout;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
 
-    public TrainingAPI trainingAPI;
+    private TrainingAPI trainingAPI;
 
     private static final String ARG_PARAM1 = "menu_item_param";
     private DrawerItemType type;
@@ -94,6 +96,21 @@ public class RootTrainingsFragment extends Fragment {
                 mViewPager.setCurrentItem(1);
         }
 
+
+        mSwipeRefreshLayout=(SwipeRefreshLayout)view.findViewById(R.id.swiperefresh);
+        mSwipeRefreshLayout.setRefreshing(true);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                loadDataFromInternet();
+            }
+        });
+
+        loadDataFromInternet();
+
+    }
+
+    private void loadDataFromInternet() {
         trainingAPI = MainApplication.getInstance().getRetrofit().create(TrainingAPI.class);
         TrainingsSendData data = new TrainingsSendData();
         data.setLimit(100);
@@ -102,19 +119,26 @@ public class RootTrainingsFragment extends Fragment {
         data.setThematics("");
         data.setToken(UserManager.getInstance().getUser().getUserToken());
 
+        DatabaseManager.getInstance().startLoadingFromInternet();
         trainingAPI.getTrainings(data).enqueue(new Callback<TrainingsGetData>() {
             @Override
             public void onResponse(Call<TrainingsGetData> call, Response<TrainingsGetData> response) {
+                mSwipeRefreshLayout.setRefreshing(false);
                 Log.v("test",response.body().toString());
                 DatabaseManager.getInstance().saveTrainings(response.body().getTrainings());
+                List<Fragment> fragments=getChildFragmentManager().getFragments();
+                for(Fragment fragment: fragments){
+                    ((DefaultTrainingsFragment)fragment).loadData();
+                }
             }
 
             @Override
             public void onFailure(Call<TrainingsGetData> call, Throwable t) {
+                DatabaseManager.getInstance().stopLoadingFromInternet();
+                mSwipeRefreshLayout.setRefreshing(false);
                 t.printStackTrace();
             }
         });
-
     }
 
 
