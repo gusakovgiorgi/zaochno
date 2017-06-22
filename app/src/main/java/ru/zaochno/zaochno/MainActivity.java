@@ -242,7 +242,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void startLoginActivity() {
-        FakeData.setIsUserLogin(false);
+        UserManager.getInstance().logout();
         Intent loginIntent = new Intent(this, LoginActivity.class);
         startActivity(loginIntent);
         finish();

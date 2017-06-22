@@ -61,4 +61,12 @@ public class UserManager implements SharedPreferencesConstants {
         mUser=new PhysicalUser("default name",null,null,null,null,0,token);
     }
 
+    public void logout(){
+        SharedPreferences preferences= MainApplication.getInstance().getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor=preferences.edit();
+        editor.clear();
+        editor.apply();
+
+    }
+
 }

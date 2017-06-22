@@ -98,7 +98,6 @@ public class RootTrainingsFragment extends Fragment {
 
 
         mSwipeRefreshLayout=(SwipeRefreshLayout)view.findViewById(R.id.swiperefresh);
-        mSwipeRefreshLayout.setRefreshing(true);
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -111,6 +110,12 @@ public class RootTrainingsFragment extends Fragment {
     }
 
     private void loadDataFromInternet() {
+        mSwipeRefreshLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                mSwipeRefreshLayout.setRefreshing(true);
+            }
+        });
         trainingAPI = MainApplication.getInstance().getRetrofit().create(TrainingAPI.class);
         TrainingsSendData data = new TrainingsSendData();
         data.setLimit(100);
@@ -124,11 +129,12 @@ public class RootTrainingsFragment extends Fragment {
             @Override
             public void onResponse(Call<TrainingsGetData> call, Response<TrainingsGetData> response) {
                 mSwipeRefreshLayout.setRefreshing(false);
-                Log.v("test",response.body().toString());
                 DatabaseManager.getInstance().saveTrainings(response.body().getTrainings());
                 List<Fragment> fragments=getChildFragmentManager().getFragments();
                 for(Fragment fragment: fragments){
-                    ((DefaultTrainingsFragment)fragment).loadData();
+                    if(fragment!=null) {
+                        ((DefaultTrainingsFragment) fragment).loadData();
+                    }
                 }
             }
 

@@ -6,9 +6,13 @@ import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import ru.zaochno.zaochno.R;
 import ru.zaochno.zaochno.model.Training;
 
@@ -20,6 +24,7 @@ public class BuyDialogFragment extends DialogFragment {
 
     private static final String ARG_PARAM1 = "param1";
     private Training mTraining;
+
 
     public static BuyDialogFragment newInstance(Training training) {
         BuyDialogFragment frag = new BuyDialogFragment();
@@ -46,6 +51,13 @@ public class BuyDialogFragment extends DialogFragment {
 
         View v = inflater.inflate(R.layout.fragment_buy_item, container, false);
 
+        ButterKnife.bind(this,v);
+
         return v;
+    }
+
+    @OnClick(R.id.dialogFragmentCloseImageViewId)
+    void closeDialog(){
+        dismiss();
     }
 }

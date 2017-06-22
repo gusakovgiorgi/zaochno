@@ -6,4 +6,5 @@ package ru.zaochno.zaochno.model.user;
 
 public enum  UserType {
     PHYSICAL_USER, LEGAL_USER
+
 }

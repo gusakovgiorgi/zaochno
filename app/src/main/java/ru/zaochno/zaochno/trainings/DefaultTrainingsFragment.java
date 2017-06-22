@@ -2,6 +2,7 @@ package ru.zaochno.zaochno.trainings;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.MainThread;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -66,6 +67,7 @@ public class DefaultTrainingsFragment extends Fragment {
 
     }
 
+    @MainThread
     public void loadData() {
         DatabaseManager.getInstance().getTrainings(new DatabaseCallBack<Training[]>() {
             @Override

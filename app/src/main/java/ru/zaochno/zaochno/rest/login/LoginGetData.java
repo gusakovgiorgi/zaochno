@@ -2,11 +2,13 @@ package ru.zaochno.zaochno.rest.login;
 
 import com.google.gson.annotations.SerializedName;
 
+import ru.zaochno.zaochno.rest.BaseResponce;
+
 /**
  * Created by Anton_MoApps on 08.06.2017.
  */
 
-public class LoginGetData {
+public class LoginGetData extends BaseResponce{
     @SerializedName("data")
     private String token;
     private boolean err;
